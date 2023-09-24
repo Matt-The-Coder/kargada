@@ -93,7 +93,7 @@ const AdminDashboardLayout = ()=>{
        <>
         <div className="sidebar">
     <Link to="/admin/dashboard" className="logo">
-      <img src="/src/assets/img/kargada-logo.png" alt="Company Logo"/>
+      <img src="/assets/img/kargada-logo.png" alt="Company Logo"/>
       <div className="logo-name">
         <span>Kar</span>gada
       </div>
@@ -210,7 +210,7 @@ const AdminDashboardLayout = ()=>{
         <span className="count">12</span>
       </a>
       <a href="#" className="profile">
-        <img src="/src/assets/img/prof-pic.jpg" />
+        <img src="/assets/img/prof-pic.jpg" />
       </a>
     </nav>
     {/* End of Navbar */}
