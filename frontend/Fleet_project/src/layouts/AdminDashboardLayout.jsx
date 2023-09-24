@@ -1,5 +1,5 @@
 import {Outlet, Link} from 'react-router-dom'
-import '../assets/css/adminLayout/dashboard.css'
+import '../../public/assets/css/adminLayout/dashboard.css'
 import { useEffect } from 'react';
 const AdminDashboardLayout = ()=>{
 
