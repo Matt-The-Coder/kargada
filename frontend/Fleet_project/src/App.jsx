@@ -1,11 +1,12 @@
 import {Routes, Route} from 'react-router-dom'
 import AdminDashboardLayout from './layouts/AdminDashboardLayout'
-import Notfound from './pages/Notfound'
+
 import CustomerLogin from './pages/customerPages/CustomerLogin'
 import CustomerRegister from './pages/customerPages/CustomerRegister'
 import CustomerDashboard from './pages/customerPages/CutomerDashboard'
 import {AdminDashboard, AdminLogin, Availability, Bookings, Customers, Drivers, Incomeexpense,
    Maintenance, Reminders, Reports, Settings, Tracking, Users, Vehicles} from './pages/adminPages/Components.js'
+import Notfound from './pages/Notfound'
 
 const App = () =>{
 

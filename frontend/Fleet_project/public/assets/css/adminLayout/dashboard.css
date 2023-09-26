@@ -20,6 +20,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    color: var(--dark);
 }
 
 .bx{
@@ -95,7 +96,7 @@ body{
     left: -50%;
 }
 .sidebar .logo .logo-name span{
-    color: var(--dark);
+    color: var(--primary);
 }
 
 .sidebar .logo .bx{

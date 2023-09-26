@@ -181,7 +181,7 @@ const AdminDashboardLayout = ()=>{
     </ul>
     <ul className="side-menu">
       <li>
-        <Link to="#" className="logout">
+        <Link to="/admin/login" className="logout">
           <i className="bx bx-log-out-circle" />
           Logout
         </Link>
