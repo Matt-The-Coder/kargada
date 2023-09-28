@@ -58,7 +58,7 @@ form{
 
 .login-content h2{
 	margin: 15px 0;
-	color: #363949;
+	color: var(--dark);
 	text-transform: uppercase;
 	font-size: 2.9rem;
 }
