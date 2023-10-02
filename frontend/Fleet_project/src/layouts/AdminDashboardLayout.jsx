@@ -1,15 +1,53 @@
 import {Outlet, Link} from 'react-router-dom'
 import '../../public/assets/css/adminLayout/dashboard.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 const AdminDashboardLayout = ()=>{
+  const [driverDropdown, setDriverDropdown] = useState(false)
+  const [vehicleDropdown, setVehicleDropdown] = useState(false)
+  const [bookingDropdown, setBookingDropdown] = useState(false)
+  const [customerDropdown, setCustomerDropdown] = useState(false)
+  const [reminderDropdown, setReminderDropdown] = useState(false)
+  const [trackingDropdown, setTrackingDropdown] = useState(false)
+  const [reportsDropdown, setReportsDropdown] = useState(false)
+  const [maintenanceDropdown, setMaintenanceDropdown] = useState(false)
+  const [userDropdown, setUserDropdown] = useState(false)
+
+  const toggleDropdown = (e) => {
+      switch(e.id) {
+        case'drivers': setDriverDropdown(!driverDropdown) 
+        break;
+        case'vehicles': setVehicleDropdown(!vehicleDropdown) 
+        break;
+        case'bookings': setBookingDropdown(!bookingDropdown) 
+        break;
+        case'customers': setCustomerDropdown(!customerDropdown) 
+        break;
+        case'reminders': setReminderDropdown(!reminderDropdown) 
+        break;
+        case'trackings': setTrackingDropdown(!trackingDropdown) 
+        break;
+        case'reports': setReportsDropdown(!reportsDropdown) 
+        break;
+        case'users': setUserDropdown(!userDropdown) 
+        break;
+        case'maintenance': setMaintenanceDropdown(!maintenanceDropdown) 
+        break;
+        default:null;
+      }
+
+
+  }
+
 
     useEffect(() => {
         // Function to handle side menu item clicks
         const handleSideMenuItemClick = (e) => {
-          const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+          const sideLinks = document.querySelectorAll('.sidebar .side-menu  li a:not(.logout)');
           sideLinks.forEach((item) => item.parentElement.classList.remove('active'));
           e.target.parentElement.classList.add('active');
         };
+
+
     
         // Function to handle menu bar click
         const handleMenuBarClick = () => {
@@ -31,7 +69,7 @@ const AdminDashboardLayout = ()=>{
             }
           }
         };
-    
+
         // Function to handle window resize
         const handleWindowResize = () => {
           const sideBar = document.querySelector('.sidebar');
@@ -86,6 +124,7 @@ const AdminDashboardLayout = ()=>{
           window.removeEventListener('resize', handleWindowResize);
           toggler.removeEventListener('change', handleThemeToggle);
         };
+      
       }, []); // Empty dependency array ensures this code runs only once, like componentDidMount
     return(
 
@@ -99,7 +138,7 @@ const AdminDashboardLayout = ()=>{
       </div>
     </Link>
     <ul className="side-menu">
-      <li>
+      <li className='active'>
         <Link to="/admin/dashboard">
           <i className="bx bxs-dashboard" />
           Dashboard
@@ -111,73 +150,212 @@ const AdminDashboardLayout = ()=>{
           Availability
         </Link>
       </li>
-      <li>
+      <li id='bookings' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/bookings">
         <i class='bx bx-book-reader'></i>
           Bookings
         </Link>
       </li>
-      <li className="active">
+      {bookingDropdown && (
+        <>
+      <li id='subMenu'>
+        <Link to="/admin/booking/list">
+        Booking List
+        </Link> 
+      </li>
+      <li id='subMenu'>
+      <Link to="/admin/booking/add">
+      Add Booking
+      </Link> 
+    </li>
+    </>
+    )
+      } 
+      <li id='drivers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/drivers">
         <i class='bx bxs-id-card'></i>
           Drivers
         </Link>
       </li>
-      <li>
+      {driverDropdown && (
+        <>
+      <li id='subMenu'>
+        <Link to="/admin/vehicles">
+        Driver List
+        </Link> 
+      </li>
+      <li id='subMenu'>
+      <Link to="/admin/vehicles">
+      Add Driver
+      </Link> 
+    </li>
+    </>
+    )
+      } 
+      
+      <li id='vehicles' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/vehicles">
         <i class='bx bx-bus-school'></i>
           Vehicles
         </Link>
       </li>
-      <li>
+      {
+        vehicleDropdown && (<>
+          <li id='subMenu'>
+        <Link to="/admin/vehicles">
+        Vehicle List
+        </Link> 
+      </li>
+      <li id='subMenu'>
+        <Link to="/admin/vehicles">
+        Add Vehicle
+        </Link> 
+      </li>
+      <li id='subMenu'> 
+        <Link to="/admin/vehicles">
+        Vehicle Group
+        </Link> 
+      </li>
+        </>)
+      }
+      <li id='maintenance' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/maintenance">
         <i class='bx bx-wrench'></i>
           Maintenance
         </Link>
       </li>
+      {maintenanceDropdown && (
+        <>
+      <li id='subMenu'>
+        <Link to="/admin/vehicles">
+        Maintenance List
+        </Link> 
+      </li >
+      <li id='subMenu'>
+      <Link to="/admin/vehicles">
+      Add Maintenance
+      </Link> 
+    </li>
+    </>
+    )
+      } 
       <li>
         <Link to="/admin/incomeexpense">
           <i className="bx bx-cog" />
           Income & Expense
         </Link>
       </li>
-      <li>
+      <li id='tracking' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/tracking">
         <i class='bx bx-navigation'></i>
           Tracking
         </Link>
       </li>
-      <li>
+      {maintenanceDropdown && (
+        <>
+      <li id='subMenu'>
+        <Link to="/admin/vehicles" >
+        History Tracking
+        </Link> 
+      </li>
+      <li id='subMenu'>
+      <Link to="/admin/vehicles">
+      Live Tracking
+      </Link> 
+    </li>
+    </>
+    )
+      } 
+      <li id='reminders' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/reminders">
         <i class='bx bxs-bell'></i>
           Reminders
         </Link>
       </li>
-      <li>
+      {reminderDropdown && (
+        <>
+      <li id='subMenu'>
+        <Link to="/admin/vehicles">
+        Reminders Management
+        </Link> 
+      </li>
+      <li id='subMenu'>
+      <Link to="/admin/vehicles">
+      Add Reminders
+      </Link> 
+    </li>
+    </>
+    )
+      } 
+      <li onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/settings">
           <i className="bx bx-cog" />
           Settings
         </Link>
       </li>
-      <li>
+      <li id='reports' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/reports">
         <i class='bx bx-message-dots'></i>
           Reports
         </Link>
       </li>
-      <li>
+      {reportsDropdown && (
+        <>
+      <li id='subMenu'>
+        <Link to="/admin/vehicles">
+        Reports List
+        </Link> 
+      </li>
+      <li id='subMenu'>
+      <Link to="/admin/vehicles">
+      Add Reports
+      </Link> 
+    </li>
+    </>
+    )
+      } 
+      <li id='users' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/users">
         <i class='bx bxs-group'></i>
           Users
         </Link>
       </li>
-      <li>
+      {userDropdown && (
+        <>
+      <li id='subMenu'>
+        <Link to="/admin/vehicles">
+        User Management
+        </Link> 
+      </li>
+      <li id='subMenu'>
+      <Link to="/admin/vehicles">
+      Add User
+      </Link> 
+    </li>
+    </>
+    )
+      } 
+      <li id='customers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/customers">
         <i class='bx bx-user-check' ></i>
           Customers
         </Link>
       </li>
-      
+      {customerDropdown && (
+        <>
+      <li id='subMenu'>
+        <Link to="/admin/vehicles">
+        Customer Management
+        </Link> 
+      </li>
+      <li id='subMenu'>
+      <Link to="/admin/vehicles">
+      Add Customer
+      </Link> 
+    </li>
+    </>
+    )
+      } 
     </ul>
     <ul className="side-menu">
       <li>
@@ -204,7 +382,6 @@ const AdminDashboardLayout = ()=>{
       </form>
       <input type="checkbox" id="theme-toggle" hidden="" />
       <label htmlFor="theme-toggle" className="theme-toggle" />
-      <img src="" alt="" />
       <a href="#" className="notif">
         <i className="bx bx-bell" />
         <span className="count">12</span>

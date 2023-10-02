@@ -18,6 +18,7 @@ const Tracking = ()=>{
     const [driveTime, setDriveTime] = useState(null);
     const [weatherCondition, setWeatherConditon] =useState(null)
     const [weatherAlerts, setWeatherAlerts] = useState(null)
+    const [weatherIcon, setWeatherIcon] = useState(null)
     const [positionData, setPositionData] = useState(null)
   
     useEffect(() => {
@@ -95,6 +96,10 @@ const Tracking = ()=>{
         const alertResponse = await axios.get(`https://api.weatherbit.io/v2.0/alerts?lat=${currentLocation.lat}&lon=${currentLocation.lng}&key=${apiToken}`);
         const alertResult = alertResponse.data
         setWeatherConditon(result)
+        const weatherIcon = `https://www.weatherbit.io/static/img/icons/${result.weather.icon}.png`
+        setWeatherIcon(weatherIcon)
+        console.log(iconURL)
+        console.log(result.weather.icon)
         setWeatherAlerts({alertTitle:alertResult.alerts[0]?.title, 
                           alertStartTime:alertResult.alerts[0]?.onset_local ,
                           alertEndTime:alertResult.alerts[0]?.ends_local})
@@ -232,7 +237,8 @@ const Tracking = ()=>{
             </div>
             <div className="weatherData"> 
             <h3>Weather Condition</h3>
-            {weatherCondition && <p>Current Weather: {weatherCondition.weather.description} </p>}
+            {weatherCondition && <p>Current Weather: {weatherCondition.weather.description} </p> &&
+            <img src={weatherIcon} alt="weather icon" />}
             {weatherCondition && <p>Rainfall Rate: {parseFloat(weatherCondition.precip)}mm/hr - {
             parseFloat(weatherCondition.precip) < 2.6? <label> Ligh Precipitation: Minimal impact on a driver's view while delivering cargo. Roads may become slightly wet, but visibility remains relatively clear, making for safe driving conditions.</label>:
             parseFloat(weatherCondition.precip) < 7.7? <label> Moderate Precipitation: Reduced visibility during cargo delivery. Rain intensifies, requiring windshield wipers and extra caution on wet roads to ensure cargo safety.</label>:
