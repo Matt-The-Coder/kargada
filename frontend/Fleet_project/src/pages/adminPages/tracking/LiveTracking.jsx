@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Geocode from 'react-geocode';
 
-const Tracking = ()=>{
+const LiveTracking = ()=>{
 
     const googleMapsAPI = import.meta.env.VITE_GOOGLE_MAPS_API
     Geocode.setApiKey(googleMapsAPI)
@@ -98,8 +98,7 @@ const Tracking = ()=>{
         setWeatherConditon(result)
         const weatherIcon = `https://www.weatherbit.io/static/img/icons/${result.weather.icon}.png`
         setWeatherIcon(weatherIcon)
-        console.log(iconURL)
-        console.log(result.weather.icon)
+        console.log('hello')
         setWeatherAlerts({alertTitle:alertResult.alerts[0]?.title, 
                           alertStartTime:alertResult.alerts[0]?.onset_local ,
                           alertEndTime:alertResult.alerts[0]?.ends_local})
@@ -205,7 +204,7 @@ const Tracking = ()=>{
     };
   
     return (
-      <div className="Tracking">
+      <div className="LiveTracking">
         <div id="weatherapi-weather-widget-1"></div><script type='text/javascript' src='https://www.weatherapi.com/weather/widget.ashx?loc=1856592&wid=1&tu=2&div=weatherapi-weather-widget-1' async></script><noscript><a href="https://www.weatherapi.com/weather/q/pag-asa-1856592" alt="Hour by hour Pag-Asa weather">10 day hour by hour Pag-Asa weather</a></noscript>
         <div id="map" style={{ height: '400px' }}></div>
         {currentLocation && (
@@ -330,4 +329,4 @@ const Tracking = ()=>{
     );
 }
 
-export default Tracking;
+export default LiveTracking;

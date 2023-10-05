@@ -163,7 +163,10 @@ body{
 }
 
 #subMenu{
-    margin-left: 10%;
+    margin-left: 25%;
+}
+#subMenu:hover{
+    color: var(--success);
 }
 
 .sidebar .side-menu li.active a{

@@ -4,8 +4,10 @@ import AdminDashboardLayout from './layouts/AdminDashboardLayout'
 import CustomerLogin from './pages/customerPages/CustomerLogin'
 import CustomerRegister from './pages/customerPages/CustomerRegister'
 import CustomerDashboard from './pages/customerPages/CutomerDashboard'
-import {AdminDashboard, AdminLogin, Availability, Bookings, Customers, Drivers, Incomeexpense,
-   Maintenance, Reminders, Reports, Settings, Tracking, Users, Vehicles} from './pages/adminPages/Components.js'
+import {AdminDashboard, AdminLogin, Availability, AddBookings, BookingList, AddCustomer, CustomerManagement,
+   AddDriver, DriversList, LiveTracking, HistoryTracking,
+ AddIncomeexpense, IeManagement, VehicleGroup, VehicleList, AddVehicle, ReportList, AddReport, AddUser, UserPanel,
+   MaintenanceList, AddMaintenance, AddReminder, ReminderPanel, Settings} from './pages/adminPages/Components.js'
 import Notfound from './pages/Notfound'
 
 const App = () =>{
@@ -18,17 +20,28 @@ const App = () =>{
      <Route element={<AdminDashboardLayout/>}>
         <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
         <Route path='/admin/availability' element={<Availability/>}/>
-        <Route path='/admin/bookings' element={<Bookings/>}/>
-        <Route path='/admin/customers' element={<Customers/>}/>
-        <Route path='/admin/drivers' element={<Drivers/>}/>
-        <Route path='/admin/incomeexpense' element={<Incomeexpense/>}/>
-        <Route path='/admin/maintenance' element={<Maintenance/>}/>
-        <Route path='/admin/reminders' element={<Reminders/>}/>
-        <Route path='/admin/reports' element={<Reports/>}/>
+        <Route path='/admin/bookings/add' element={<AddBookings/>}/>
+        <Route path='/admin/bookings/list' element={<BookingList/>}/>
+        <Route path='/admin/customers/management' element={<CustomerManagement/>}/>
+        <Route path='/admin/customers/add' element={<AddCustomer/>}/>
+        <Route path='/admin/driver/add' element={<AddDriver/>}/>
+        <Route path='/admin/driver/list' element={<DriversList/>}/>
+        <Route path='/admin/incomeexpense/add' element={<AddIncomeexpense/>}/>
+        <Route path='/admin/incomeexpense/management' element={<IeManagement/>}/>
+        <Route path='/admin/maintenance/add' element={<AddMaintenance/>}/>
+        <Route path='/admin/maintenance/list' element={<MaintenanceList/>}/>
+        <Route path='/admin/reminder/management' element={<ReminderPanel/>}/>
+        <Route path='/admin/reminder/add' element={<AddReminder/>}/>
+        <Route path='/admin/report/list' element={<ReportList/>}/>
+        <Route path='/admin/report/add' element={<AddReport/>}/>
         <Route path='/admin/settings' element={<Settings/>}/>
-        <Route path='/admin/tracking' element={<Tracking/>}/>
-        <Route path='/admin/users' element={<Users/>}/>
-        <Route path='/admin/vehicles' element={<Vehicles/>}/>
+        <Route path='/admin/tracking/live' element={<LiveTracking/>}/>
+        <Route path='/admin/tracking/history' element={<HistoryTracking/>}/>
+        <Route path='/admin/users/add' element={<AddUser/>}/>
+        <Route path='/admin/users/management' element={<UserPanel/>}/>
+        <Route path='/admin/vehicle/add' element={<AddVehicle/>}/>
+        <Route path='/admin/vehicle/list' element={<VehicleList/>}/>
+        <Route path='/admin/vehicle/group' element={<VehicleGroup/>}/>
       </Route>
            <Route path='/Login' element={<CustomerLogin/>}/>
           <Route path='/register' element={<CustomerRegister/>}/>

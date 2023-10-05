@@ -11,6 +11,7 @@ const AdminDashboardLayout = ()=>{
   const [reportsDropdown, setReportsDropdown] = useState(false)
   const [maintenanceDropdown, setMaintenanceDropdown] = useState(false)
   const [userDropdown, setUserDropdown] = useState(false)
+  const [incomeExpenseDropdown, setIncomeExpenseDropdown] = useState(false)
 
   const toggleDropdown = (e) => {
       switch(e.id) {
@@ -24,11 +25,13 @@ const AdminDashboardLayout = ()=>{
         break;
         case'reminders': setReminderDropdown(!reminderDropdown) 
         break;
-        case'trackings': setTrackingDropdown(!trackingDropdown) 
+        case'tracking': setTrackingDropdown(!trackingDropdown) 
         break;
         case'reports': setReportsDropdown(!reportsDropdown) 
         break;
         case'users': setUserDropdown(!userDropdown) 
+        break;
+        case'ie': setIncomeExpenseDropdown(!incomeExpenseDropdown) 
         break;
         case'maintenance': setMaintenanceDropdown(!maintenanceDropdown) 
         break;
@@ -52,8 +55,30 @@ const AdminDashboardLayout = ()=>{
         // Function to handle menu bar click
         const handleMenuBarClick = () => {
           const sideBar = document.querySelector('.sidebar');
+          const sideMenu = document.querySelectorAll('#subMenu');
           sideBar.classList.toggle('close');
+
+          if (sideBar.className == 'sidebar close') 
+          {
+              sideMenu.forEach((menu)=>
+              {
+                console.log(menu)
+                menu.style.visibility = 'hidden'
+              })
+
+          }
+
+          else {
+            sideMenu.forEach((menu)=>
+            {
+
+              console.log(menu)
+              menu.style.visibility = 'visible'
+            })
+
+          }
         };
+        
     
         // Function to handle search button click
         const handleSearchBtnClick = (e) => {
@@ -150,21 +175,22 @@ const AdminDashboardLayout = ()=>{
           Availability
         </Link>
       </li>
+      
       <li id='bookings' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/bookings">
+        <Link to="#">
         <i class='bx bx-book-reader'></i>
           Bookings
         </Link>
       </li>
       {bookingDropdown && (
         <>
-      <li id='subMenu'>
-        <Link to="/admin/booking/list">
+      <li>
+        <Link to="/admin/bookings/list" id='subMenu'> 
         Booking List
         </Link> 
       </li>
-      <li id='subMenu'>
-      <Link to="/admin/booking/add">
+      <li >
+      <Link to="/admin/bookings/add" id='subMenu'>
       Add Booking
       </Link> 
     </li>
@@ -172,20 +198,20 @@ const AdminDashboardLayout = ()=>{
     )
       } 
       <li id='drivers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/drivers">
+        <Link to="#">
         <i class='bx bxs-id-card'></i>
           Drivers
         </Link>
       </li>
       {driverDropdown && (
         <>
-      <li id='subMenu'>
-        <Link to="/admin/vehicles">
+      <li>
+        <Link to="/admin/driver/list" id='subMenu'>
         Driver List
         </Link> 
       </li>
-      <li id='subMenu'>
-      <Link to="/admin/vehicles">
+      <li>
+      <Link to="/admin/driver/add" id='subMenu'>
       Add Driver
       </Link> 
     </li>
@@ -194,72 +220,88 @@ const AdminDashboardLayout = ()=>{
       } 
       
       <li id='vehicles' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/vehicles">
+        <Link to="#">
         <i class='bx bx-bus-school'></i>
           Vehicles
         </Link>
       </li>
       {
         vehicleDropdown && (<>
-          <li id='subMenu'>
-        <Link to="/admin/vehicles">
+          <li>
+        <Link to="/admin/vehicle/list"  id='subMenu'>
         Vehicle List
         </Link> 
       </li>
-      <li id='subMenu'>
-        <Link to="/admin/vehicles">
+      <li>
+        <Link to="/admin/vehicle/add"  id='subMenu'>
         Add Vehicle
         </Link> 
       </li>
-      <li id='subMenu'> 
-        <Link to="/admin/vehicles">
+      <li> 
+        <Link to="/admin/vehicle/group"  id='subMenu'>
         Vehicle Group
         </Link> 
       </li>
         </>)
       }
       <li id='maintenance' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/maintenance">
+        <Link to="#">
         <i class='bx bx-wrench'></i>
           Maintenance
         </Link>
       </li>
       {maintenanceDropdown && (
         <>
-      <li id='subMenu'>
-        <Link to="/admin/vehicles">
+      <li>
+        <Link to="/admin/maintenance/list"  id='subMenu'>
         Maintenance List
         </Link> 
       </li >
-      <li id='subMenu'>
-      <Link to="/admin/vehicles">
+      <li >
+      <Link to="/admin/maintenance/add" id='subMenu'>
       Add Maintenance
       </Link> 
     </li>
     </>
     )
       } 
-      <li>
-        <Link to="/admin/incomeexpense">
+      <li id='ie' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
+        <Link to="#">
           <i className="bx bx-cog" />
           Income & Expense
         </Link>
       </li>
+      {incomeExpenseDropdown && (
+        <>
+      <li >
+        <Link to="/admin/incomeexpense/management" id='subMenu'>
+         IE Management
+        </Link> 
+      </li>
+      <li >
+      <Link to="/admin/incomeexpense/add" id='subMenu'>
+      Add IE
+      </Link> 
+    </li>
+    </>
+    )
+
+      }
       <li id='tracking' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/tracking">
+        <Link to="#">
         <i class='bx bx-navigation'></i>
           Tracking
         </Link>
       </li>
-      {maintenanceDropdown && (
+      {trackingDropdown && (
         <>
-      <li id='subMenu'>
-        <Link to="/admin/vehicles" >
+      <li >
+        <Link to="/admin/tracking/history" id='subMenu'>
         History Tracking
         </Link> 
       </li>
-      <li id='subMenu'>
-      <Link to="/admin/vehicles">
+      <li >
+      <Link to="/admin/tracking/live" id='subMenu'>
       Live Tracking
       </Link> 
     </li>
@@ -267,20 +309,20 @@ const AdminDashboardLayout = ()=>{
     )
       } 
       <li id='reminders' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/reminders">
+        <Link to="#">
         <i class='bx bxs-bell'></i>
           Reminders
         </Link>
       </li>
       {reminderDropdown && (
         <>
-      <li id='subMenu'>
-        <Link to="/admin/vehicles">
-        Reminders Management
+      <li>
+        <Link to="/admin/reminder/management"  id='subMenu'>
+        Reminders Panel
         </Link> 
       </li>
-      <li id='subMenu'>
-      <Link to="/admin/vehicles">
+      <li>
+      <Link to="/admin/reminder/add" id='subMenu'>
       Add Reminders
       </Link> 
     </li>
@@ -294,20 +336,20 @@ const AdminDashboardLayout = ()=>{
         </Link>
       </li>
       <li id='reports' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/reports">
+        <Link to="#">
         <i class='bx bx-message-dots'></i>
           Reports
         </Link>
       </li>
       {reportsDropdown && (
         <>
-      <li id='subMenu'>
-        <Link to="/admin/vehicles">
+      <li>
+        <Link to="/admin/report/list" id='subMenu'>
         Reports List
         </Link> 
       </li>
-      <li id='subMenu'>
-      <Link to="/admin/vehicles">
+      <li>
+      <Link to="/admin/report/add" id='subMenu'>
       Add Reports
       </Link> 
     </li>
@@ -315,20 +357,20 @@ const AdminDashboardLayout = ()=>{
     )
       } 
       <li id='users' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/users">
+        <Link to="#">
         <i class='bx bxs-group'></i>
           Users
         </Link>
       </li>
       {userDropdown && (
         <>
-      <li id='subMenu'>
-        <Link to="/admin/vehicles">
-        User Management
+      <li>
+        <Link to="/admin/users/management" id='subMenu'>
+        User Panel
         </Link> 
       </li>
-      <li id='subMenu'>
-      <Link to="/admin/vehicles">
+      <li>
+      <Link to="/admin/users/add" id='subMenu'>
       Add User
       </Link> 
     </li>
@@ -336,20 +378,20 @@ const AdminDashboardLayout = ()=>{
     )
       } 
       <li id='customers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="/admin/customers">
+        <Link to="#">
         <i class='bx bx-user-check' ></i>
           Customers
         </Link>
       </li>
       {customerDropdown && (
         <>
-      <li id='subMenu'>
-        <Link to="/admin/vehicles">
-        Customer Management
+      <li>
+        <Link to="/admin/customers/management" id='subMenu'>
+        Customer Panel
         </Link> 
       </li>
-      <li id='subMenu'>
-      <Link to="/admin/vehicles">
+      <li>
+      <Link to="/admin/customers/add" id='subMenu'>
       Add Customer
       </Link> 
     </li>
