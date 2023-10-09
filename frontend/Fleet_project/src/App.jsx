@@ -42,6 +42,7 @@ const App = () =>{
         <Route path='/admin/vehicle/add' element={<AddVehicle/>}/>
         <Route path='/admin/vehicle/list' element={<VehicleList/>}/>
         <Route path='/admin/vehicle/group' element={<VehicleGroup/>}/>
+        <Route path='/' element={<AdminLogin/>}/>
       </Route>
            <Route path='/Login' element={<CustomerLogin/>}/>
           <Route path='/register' element={<CustomerRegister/>}/>
