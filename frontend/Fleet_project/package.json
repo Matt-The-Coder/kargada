@@ -15,7 +15,7 @@
     "react-dom": "^18.2.0",
     "react-geocode": "^0.2.3",
     "react-router-dom": "^6.16.0",
-    "vite-plugin-pwa": "^0.14.1"
+    "vite-plugin-pwa": "^0.16.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
