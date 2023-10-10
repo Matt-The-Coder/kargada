@@ -1,12 +1,16 @@
 {
     "name": "Kargada",
     "short_name": "Kargada",
-    "description":"A Freight Management System",
-    "theme_color": "#1976d2",
-    "background_color": "#1976d2",
+    "description": "A Freight Management System",
+    "theme_color": "#02223d",
+    "background_color": "#000000",
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
+    "orientation": "any",
+    "display_override": [
+        "window-controls-overlay"
+    ],
     "icons": [
         {
             "src": "maskable_icon.png",
@@ -33,6 +37,6 @@
             "src": "kargada-logo-512.png",
             "sizes": "512x512",
             "type": "image/png"
-        } 
+        }
     ]
 }
