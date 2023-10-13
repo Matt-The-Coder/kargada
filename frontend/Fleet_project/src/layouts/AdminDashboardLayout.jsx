@@ -1,6 +1,8 @@
 import {Outlet, Link} from 'react-router-dom'
 import '../../public/assets/css/adminLayout/dashboard.css'
 import { useEffect, useState } from 'react';
+import RiseLoader from "react-spinners/RiseLoader";
+
 const AdminDashboardLayout = ()=>{
   const [driverDropdown, setDriverDropdown] = useState(false)
   const [vehicleDropdown, setVehicleDropdown] = useState(false)
@@ -12,7 +14,7 @@ const AdminDashboardLayout = ()=>{
   const [maintenanceDropdown, setMaintenanceDropdown] = useState(false)
   const [userDropdown, setUserDropdown] = useState(false)
   const [incomeExpenseDropdown, setIncomeExpenseDropdown] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(true)
   const toggleDropdown = (e) => {
       switch(e.id) {
         case'drivers': setDriverDropdown(!driverDropdown) 
@@ -41,6 +43,12 @@ const AdminDashboardLayout = ()=>{
 
   }
 
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    position: "fixed"
+  };
+  
 
     useEffect(() => {
         // Function to handle side menu item clicks
@@ -56,28 +64,24 @@ const AdminDashboardLayout = ()=>{
         const handleMenuBarClick = () => {
           const sideBar = document.querySelector('.sidebar');
           const sideMenu = document.querySelectorAll('#subMenu');
+          
+          // Toggle the 'close' class on the sidebar
           sideBar.classList.toggle('close');
-
-          if (sideBar.className == 'sidebar close') 
-          {
-              sideMenu.forEach((menu)=>
-              {
-                console.log(menu)
-                menu.style.visibility = 'hidden'
-              })
-
-          }
-
-          else {
-            sideMenu.forEach((menu)=>
-            {
-
-              console.log(menu)
-              menu.style.visibility = 'visible'
-            })
-
+        
+          // Check if the sidebar is closed
+          if (sideBar.classList.contains('close')) {
+            sideMenu.forEach((menu) => {
+              // Apply styles for smooth hiding
+              menu.style.opacity = '0.5';
+            });
+          } else {
+            sideMenu.forEach((menu) => {
+              // Apply styles for smooth showing
+              menu.style.opacity = '1';
+            });
           }
         };
+        
         
     
         // Function to handle search button click
@@ -155,6 +159,22 @@ const AdminDashboardLayout = ()=>{
 
 
        <>
+
+       {isLoading && (
+       <>
+  <div className="loadingScreen"></div>
+  <div className="loadingHandler">
+  <RiseLoader
+  id='loader'
+  color="#1976D2"
+  cssOverride={override}
+  speedMultiplier={0.8}
+/>
+  </div>
+
+
+       </>)}
+      
         <div className="sidebar">
     <Link to="/admin/dashboard" className="logo">
       <img src="/assets/img/kargada-logo.png" alt="Company Logo"/>
@@ -171,14 +191,14 @@ const AdminDashboardLayout = ()=>{
       </li>
       <li>
         <Link to="/admin/availability">
-        <i class='bx bx-calendar'></i>
+        <i className='bx bx-calendar'></i>
           Availability
         </Link>
       </li>
       
       <li id='bookings' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bx-book-reader'></i>
+        <i className='bx bx-book-reader'></i>
           Bookings
         </Link>
       </li>
@@ -199,7 +219,7 @@ const AdminDashboardLayout = ()=>{
       } 
       <li id='drivers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bxs-id-card'></i>
+        <i className='bx bxs-id-card'></i>
           Drivers
         </Link>
       </li>
@@ -221,7 +241,7 @@ const AdminDashboardLayout = ()=>{
       
       <li id='vehicles' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bx-bus-school'></i>
+        <i className='bx bx-bus-school'></i>
           Vehicles
         </Link>
       </li>
@@ -246,7 +266,7 @@ const AdminDashboardLayout = ()=>{
       }
       <li id='maintenance' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bx-wrench'></i>
+        <i className='bx bx-wrench'></i>
           Maintenance
         </Link>
       </li>
@@ -289,7 +309,7 @@ const AdminDashboardLayout = ()=>{
       }
       <li id='tracking' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bx-navigation'></i>
+        <i className='bx bx-navigation'></i>
           Tracking
         </Link>
       </li>
@@ -310,7 +330,7 @@ const AdminDashboardLayout = ()=>{
       } 
       <li id='reminders' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bxs-bell'></i>
+        <i className='bx bxs-bell'></i>
           Reminders
         </Link>
       </li>
@@ -337,7 +357,7 @@ const AdminDashboardLayout = ()=>{
       </li>
       <li id='reports' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bx-message-dots'></i>
+        <i className='bx bx-message-dots'></i>
           Reports
         </Link>
       </li>
@@ -358,7 +378,7 @@ const AdminDashboardLayout = ()=>{
       } 
       <li id='users' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bxs-group'></i>
+        <i className='bx bxs-group'></i>
           Users
         </Link>
       </li>
@@ -379,7 +399,7 @@ const AdminDashboardLayout = ()=>{
       } 
       <li id='customers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bx-user-check' ></i>
+        <i className='bx bx-user-check' ></i>
           Customers
         </Link>
       </li>
@@ -434,7 +454,7 @@ const AdminDashboardLayout = ()=>{
     </nav>
     {/* End of Navbar */}
     <main>
-         <Outlet/>
+         <Outlet context={[isLoading, setIsLoading]}/>
 
     </main>
   </div>

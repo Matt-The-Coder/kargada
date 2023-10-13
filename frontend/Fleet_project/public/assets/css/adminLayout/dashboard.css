@@ -162,9 +162,42 @@ body{
     transition: all 0.3s ease;
 }
 
-#subMenu{
-    margin-left: 25%;
+.loadingScreen {
+    position:fixed;
+    z-index: 2001;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.4;
 }
+
+#loader {
+    z-index: 2005;
+    opacity: 1;
+}
+.loadingHandler {
+    z-index: 2004;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#subMenu {
+    margin-left: 25%;
+    opacity: 1;
+    overflow: hidden;
+    transition: opacity 0.3s ease, height 0.3s ease;
+  }
+  
+  .sidebar.close #subMenu {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, height 0.3s ease;
+  }
+  
 #subMenu:hover{
     color: var(--success);
 }
