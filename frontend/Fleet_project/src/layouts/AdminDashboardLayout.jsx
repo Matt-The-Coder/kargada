@@ -14,7 +14,7 @@ const AdminDashboardLayout = ()=>{
   const [maintenanceDropdown, setMaintenanceDropdown] = useState(false)
   const [userDropdown, setUserDropdown] = useState(false)
   const [incomeExpenseDropdown, setIncomeExpenseDropdown] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const toggleDropdown = (e) => {
       switch(e.id) {
         case'drivers': setDriverDropdown(!driverDropdown) 

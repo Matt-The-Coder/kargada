@@ -1,7 +1,10 @@
+import axios from 'axios';
 import '../../../public/assets/css/adminLayout/login.css'
-import { useEffect, useRef} from 'react';
+import { useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router-dom'
 const AdminLogin = ()=>{
+  const [userName, setUserName] = useState(null)
+  const [password, setPassword] = useState(null)
   const eye = useRef(null)
   const passwordInput = useRef(null)
   const showPassword = () =>
@@ -16,6 +19,16 @@ const AdminLogin = ()=>{
       eye.current.classList = "fa fa-eye-slash"
     }
   }
+
+  const handleLogin = async (e) => {
+    try {
+      e.preventDefault();
+      const result = await axios.post('http://localhost:12345/login', { userName, password });
+      console.log(result.data);
+    } catch (error) {
+      console.error(error)
+    }
+  };
     useEffect(()=>
     {
         const inputs = document.querySelectorAll(".input");
@@ -44,13 +57,13 @@ const AdminLogin = ()=>{
     return(
   
             <>
-
+  <div className="background-image"></div>
   <div className="AdminLogin">
     <div className="img">
       <img src="/assets/img/kargada-logo-name.png" />
     </div>
     <div className="login-content">
-      <form action="index.html">
+      <form action="index.html" onSubmit={handleLogin}>
         <img src="/assets/img/avatar.svg" />
         <h2 className="title">Welcome</h2>
         <div className="input-div one">
@@ -59,7 +72,7 @@ const AdminLogin = ()=>{
           </div>
           <div className="div">
             <h5>Username</h5>
-            <input type="text" className="input" />
+            <input type="text" className="input" name='username' onChange={(e)=>{setUserName(e.currentTarget.value)}} />
           </div>
         </div>
         <div className="input-div pass">
@@ -68,14 +81,15 @@ const AdminLogin = ()=>{
           </div>
           <div className="div">
             <h5>Password</h5>
-            <input type="password" className="input" ref={passwordInput}/>
-            <i class="fa fa-eye-slash" id='eye' aria-hidden="true" onClick={showPassword} ref={eye}></i>
+            <input type="password" className="input" ref={passwordInput} name='password'
+             onChange={(e)=>{setPassword(e.currentTarget.value)}}/>
+            <i className="fa fa-eye-slash" id='eye' aria-hidden="true" onClick={showPassword} ref={eye}></i>
           </div>
         </div>
         <a href="#">Forgot Password?</a>
-        <Link to="/admin/dashboard">
+      
         <button type='submit' className='btn'>Login</button>
-        </Link>    
+
       </form>
     </div>
   </div>
