@@ -60,7 +60,10 @@ const AdminLogin = ()=>{
   <div className="background-image"></div>
   <div className="AdminLogin">
     <div className="img">
+      <Link to="/">
       <img src="/assets/img/kargada-logo-name.png" />
+      </Link>
+     
     </div>
     <div className="login-content">
       <form action="index.html" onSubmit={handleLogin}>
@@ -88,7 +91,7 @@ const AdminLogin = ()=>{
         </div>
         <a href="#">Forgot Password?</a>
       
-        <button type='submit' className='btn'>Login</button>
+      <Link to="/admin/dashboard"><button type='submit' className='btn'>Login</button></Link>  
 
       </form>
     </div>

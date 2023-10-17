@@ -7,7 +7,7 @@ import CustomerDashboard from './pages/customerPages/CutomerDashboard'
 import {AdminDashboard, AdminLogin, Availability, AddBookings, BookingList, AddCustomer, CustomerManagement,
    AddDriver, DriversList, LiveTracking, HistoryTracking,
  AddIncomeexpense, IeManagement, VehicleGroup, VehicleList, AddVehicle, ReportList, AddReport, AddUser, UserPanel,
-   MaintenanceList, AddMaintenance, AddReminder, ReminderPanel, Settings} from './pages/adminPages/Components.js'
+   MaintenanceList, AddMaintenance, AddReminder, ReminderPanel, Settings, LandingPage} from './pages/adminPages/Components.js'
 import Notfound from './pages/Notfound'
 
 const App = () =>{
@@ -44,10 +44,9 @@ const App = () =>{
         <Route path='/admin/vehicle/group' element={<VehicleGroup/>}/>
        
       </Route>
-           <Route path='/Login' element={<CustomerLogin/>}/>
-           <Route path='/admin/login' element={<AdminLogin/>}/>
+           <Route path='/' element={<LandingPage/>}/>
           <Route path='/register' element={<CustomerRegister/>}/>
-          <Route path='/' element={<AdminLogin/>}/>
+          <Route path='/login' element={<AdminLogin/>}/>
            <Route path='/*' element={<Notfound/>}/>
       </Routes>
     </>

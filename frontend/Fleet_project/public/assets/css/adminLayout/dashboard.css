@@ -15,7 +15,7 @@
     --light-success: #BBF7D0;
 }
 
-*{
+.DashboardLayout *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,15 +23,15 @@
     color: var(--dark);
 }
 
-.bx{
+.DashboardLayout .bx{
     font-size: 1.7rem;
 }
 
-a{
+.DashboardLayout a{
     text-decoration: none;
 }
 
-li{
+.DashboardLayout li{
     list-style: none;
 }
 

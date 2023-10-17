@@ -158,7 +158,7 @@ const AdminDashboardLayout = ()=>{
     return(
 
 
-       <>
+       <div className='DashboardLayout'>
 
        {isLoading && (
        <>
@@ -421,7 +421,7 @@ const AdminDashboardLayout = ()=>{
     </ul>
     <ul className="side-menu">
       <li>
-        <Link to="/admin/login" className="logout">
+        <Link to="/login" className="logout">
           <i className="bx bx-log-out-circle" />
           Logout
         </Link>
@@ -460,7 +460,7 @@ const AdminDashboardLayout = ()=>{
   </div>
                
              
-        </>
+        </div>
     )
 }
 

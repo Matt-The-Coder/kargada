@@ -23,3 +23,4 @@ export { default as VehicleList } from './vehicles/VehicleList';
 export { default as Availability } from './Availability';
 export { default as AdminDashboard } from './AdminDashboard';
 export { default as AdminLogin } from './AdminLogin';
+export {default as LandingPage} from '../landingPages/LandingPage';
