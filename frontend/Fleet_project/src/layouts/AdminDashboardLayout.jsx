@@ -421,10 +421,10 @@ const AdminDashboardLayout = ()=>{
     </ul>
     <ul className="side-menu">
       <li>
-        <Link to="/login" className="logout">
+        <a href="/login" className="logout">
           <i className="bx bx-log-out-circle" />
           Logout
-        </Link>
+        </a>
       </li>
     </ul>
   </div>

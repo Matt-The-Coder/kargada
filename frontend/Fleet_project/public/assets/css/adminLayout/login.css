@@ -48,6 +48,10 @@
 	text-align: center;
 }
 
+.login-content #image-link {
+	display: inline;
+}
+
 .login-content form #eye{
 	 position: relative;
 	 top:30%;
@@ -58,6 +62,7 @@
 .img img{
 	width: 500px;
 }
+
 
 form{
 	width: 360px;

@@ -67,7 +67,7 @@ const AdminLogin = ()=>{
     </div>
     <div className="login-content">
       <form action="index.html" onSubmit={handleLogin}>
-        <img src="/assets/img/avatar.svg" />
+       <Link to='/' id='image-link'><img src="/assets/img/avatar.svg"/></Link> 
         <h2 className="title">Welcome</h2>
         <div className="input-div one">
           <div className="i">

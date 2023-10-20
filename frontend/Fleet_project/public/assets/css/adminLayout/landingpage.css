@@ -6,10 +6,10 @@
   /*========== Colors ==========*/
   --hue: 45;
   --sat: 98%;
-  --first-color: #1976D2;
-  --first-color-light: #348be2;
+  --first-color: #3d93fd;
+  --first-color-light: #4695e4;
   --first-color-lighten: #4f9be7;
-  --first-color-alt: #479aec;
+  --first-color-alt: #479aec ;
   --title-color: hsl(var(--hue), 4%, 15%);
   --text-color: hsl(var(--hue), 4%, 35%);
   --text-color-light: #ff5e00;
@@ -179,6 +179,11 @@ body.dark-theme {
   align-items: center;
 }
 
+#sitespeak-launcher-inner{
+  background-color: var(--first-color);
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
 @media screen and (max-width: 767px) {
   .nav__menu {
     position: fixed;
@@ -258,7 +263,7 @@ body.dark-theme {
 .button {
   display: inline-block;
   background-color: var(--first-color);
-  color: #1A1A1A;
+  color: var(--title-color);
   padding: .75rem 1.5rem;
   border-radius: 3rem;
   font-weight: var(--font-semi-bold);
@@ -436,7 +441,7 @@ body.dark-theme {
 .scrollup {
   position: fixed;
   background: var(--first-color);
-  right: 1rem;
+  left: 1rem;
   bottom: -20%;
   display: inline-flex;
   padding: .3rem;
@@ -458,7 +463,7 @@ body.dark-theme {
 
 /* Show Scroll Up*/
 .show-scroll {
-  bottom: 3rem;
+  bottom: 2rem;
 }
 
 /*=============== SCROLL BAR ===============*/
@@ -607,6 +612,6 @@ body.dark-theme {
     column-gap: 3rem;
   }
   .scrollup {
-    right: 2rem;
+    left: 2rem;
   }
 }

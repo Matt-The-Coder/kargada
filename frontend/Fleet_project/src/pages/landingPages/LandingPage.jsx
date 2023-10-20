@@ -10,6 +10,18 @@ import FooterSection from './FooterSection'
 import ContactSection from './ContactSection'
 const LandingPage = () => 
 {
+  useEffect(() => {
+    if (window.location.pathname === '/') {
+      const script = document.createElement('script');
+      script.src = "https://sitespeak.ai/chatbots/49dc5243-2eaf-44da-847f-d64260062133.js";
+      script.async = true;
+      document.head.appendChild(script);
+  
+      return () => {
+        document.head.removeChild(script);
+      };
+    }
+  }, []);
        // SHOW MENU
        const showMenu = (toggleId, navId) => {
         const toggle = document.getElementById(toggleId);
@@ -137,7 +149,7 @@ const LandingPage = () =>
 
     return (
         <div className="LandingPage">
-                <>
+          
   {/*=============== HEADER ===============*/}
   <header className="header" id="header">
     <nav className="nav container">
@@ -167,9 +179,9 @@ const LandingPage = () =>
             </a>
           </li>
           <li className="nav__item">
-            <Link to="/login" className="nav__link">
+            <a href="/login" className="nav__link">
               Login
-            </Link>
+            </a>
           </li>
           <i className="bx bx-toggle-left change-theme" id="theme-button" />
         </ul>
@@ -202,8 +214,6 @@ const LandingPage = () =>
   <a href="#" className="scrollup" id="scroll-up">
     <i className="bx bx-up-arrow-alt scrollup__icon" />
   </a>
-</>
-
         </div>
     )
 }
