@@ -1,9 +1,11 @@
-import {Outlet, Link} from 'react-router-dom'
+import {Outlet, Link, useNavigate} from 'react-router-dom'
 import '../../public/assets/css/adminLayout/dashboard.css'
 import { useEffect, useState } from 'react';
 import RiseLoader from "react-spinners/RiseLoader";
-
+import axios from 'axios';
 const AdminDashboardLayout = ()=>{
+  axios.defaults.withCredentials = true;
+  const nav = useNavigate(null)
   const [driverDropdown, setDriverDropdown] = useState(false)
   const [vehicleDropdown, setVehicleDropdown] = useState(false)
   const [bookingDropdown, setBookingDropdown] = useState(false)
@@ -15,6 +17,9 @@ const AdminDashboardLayout = ()=>{
   const [userDropdown, setUserDropdown] = useState(false)
   const [incomeExpenseDropdown, setIncomeExpenseDropdown] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isAuth, setIsAuth] = useState(false)
+  const [user, setUser] = useState(null)
+  const [authError, setAuthError] = useState(null)
   const toggleDropdown = (e) => {
       switch(e.id) {
         case'drivers': setDriverDropdown(!driverDropdown) 
@@ -49,6 +54,38 @@ const AdminDashboardLayout = ()=>{
     position: "fixed"
   };
   
+
+  const checkAuthentication = async () => {
+
+    try {
+      const result = await axios.get("http://127.0.0.1:12345/homeAuthentication")
+      if(result.data.message){
+        setAuthError(result.data.message)
+        nav("/login")
+      }else{
+        const userData = result.data
+        setIsAuth(true);
+        setUser(userData.authData.user[0])
+      }
+    } catch (error) {
+      setAuthError("Cannot fetch, Internal server is down!")
+    }
+ 
+
+  }
+
+  const handleLogout = async () => 
+  {
+      const result = await axios.delete("http://127.0.0.1:12345/logout");
+      const message = result.data
+      console.log(message)
+      window.location.reload()
+  }
+  useEffect(()=>
+  {
+    checkAuthentication()
+  }, [])
+
 
     useEffect(() => {
         // Function to handle side menu item clicks
@@ -420,8 +457,8 @@ const AdminDashboardLayout = ()=>{
       } 
     </ul>
     <ul className="side-menu">
-      <li>
-        <a href="/login" className="logout">
+      <li onClick={handleLogout} style={{cursor:"pointer"}}>
+        <a className="logout">
           <i className="bx bx-log-out-circle" />
           Logout
         </a>
@@ -454,7 +491,7 @@ const AdminDashboardLayout = ()=>{
     </nav>
     {/* End of Navbar */}
     <main>
-         <Outlet context={[isLoading, setIsLoading]}/>
+         <Outlet context={{isLoading, setIsLoading, ...user}}/>
 
     </main>
   </div>

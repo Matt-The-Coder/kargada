@@ -1,8 +1,10 @@
 import axios from 'axios';
-import '../../../public/assets/css/adminLayout/login.css'
+import '../../public/assets/css/adminLayout/login.css'
 import { useEffect, useRef, useState} from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 const AdminLogin = ()=>{
+  const nav = useNavigate(null)
+  axios.defaults.withCredentials = true;
   const [userName, setUserName] = useState(null)
   const [password, setPassword] = useState(null)
   const eye = useRef(null)
@@ -12,7 +14,6 @@ const AdminLogin = ()=>{
     if(passwordInput.current.type == "password"){
       passwordInput.current.type = "text"
       eye.current.classList = "fa fa-eye"
-      console.log(eye.current)
     }
     else{
       passwordInput.current.type = "password"
@@ -23,8 +24,15 @@ const AdminLogin = ()=>{
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
-      const result = await axios.post('http://localhost:12345/login', { userName, password });
-      console.log(result.data);
+      const result = await axios.post('http://127.0.0.1:12345/login', { userName, password });
+      if(result.data.success) {
+        console.log(result.data.success)
+        nav('/admin/dashboard')
+      }
+      else {
+        alert(result.data.message)
+      }
+      
     } catch (error) {
       console.error(error)
     }
@@ -43,8 +51,7 @@ const AdminLogin = ()=>{
                 parent.classList.remove("focus");
             }
         }
-        
-        
+            
         inputs.forEach(input => {
             input.addEventListener("focus", addcl);
             input.addEventListener("blur", remcl);
@@ -91,7 +98,7 @@ const AdminLogin = ()=>{
         </div>
         <a href="#">Forgot Password?</a>
       
-      <Link to="/admin/dashboard"><button type='submit' className='btn'>Login</button></Link>  
+      <button type='submit' className='btn'>Login</button>
 
       </form>
     </div>

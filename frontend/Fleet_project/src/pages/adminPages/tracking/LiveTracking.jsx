@@ -4,7 +4,7 @@ import axios from 'axios';
 import Geocode from 'react-geocode';
 import { useOutletContext } from 'react-router-dom';
 const LiveTracking = () => {
-  const [isLoading, setIsLoading] = useOutletContext()
+  const {isLoading, setIsLoading} = useOutletContext()
   const googleMapsAPI = import.meta.env.VITE_GOOGLE_MAPS_API
   Geocode.setApiKey(googleMapsAPI)
   const [address, setAddress] = useState('');

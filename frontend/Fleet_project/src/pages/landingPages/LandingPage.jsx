@@ -8,8 +8,10 @@ import ServicesSection from './ServicesSection';
 import AppSection from './AppSection';
 import FooterSection from './FooterSection'
 import ContactSection from './ContactSection'
+
 const LandingPage = () => 
 {
+
   useEffect(() => {
     if (window.location.pathname === '/') {
       const script = document.createElement('script');
