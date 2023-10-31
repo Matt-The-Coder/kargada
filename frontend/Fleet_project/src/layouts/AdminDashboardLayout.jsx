@@ -5,6 +5,7 @@ import RiseLoader from "react-spinners/RiseLoader";
 import axios from 'axios';
 const AdminDashboardLayout = ()=>{
   axios.defaults.withCredentials = true;
+  const hostServer = import.meta.env.VITE_SERVER_HOST
   const nav = useNavigate(null)
   const [driverDropdown, setDriverDropdown] = useState(false)
   const [vehicleDropdown, setVehicleDropdown] = useState(false)
@@ -58,7 +59,7 @@ const AdminDashboardLayout = ()=>{
   const checkAuthentication = async () => {
 
     try {
-      const result = await axios.get("http://127.0.0.1:12345/homeAuthentication")
+      const result = await axios.get(`${hostServer}/homeAuthentication`)
       if(result.data.message){
         setAuthError(result.data.message)
         nav("/login")
@@ -76,7 +77,7 @@ const AdminDashboardLayout = ()=>{
 
   const handleLogout = async () => 
   {
-      const result = await axios.delete("http://127.0.0.1:12345/logout");
+      const result = await axios.delete(`${hostServer}/logout`);
       const message = result.data
       console.log(message)
       window.location.reload()

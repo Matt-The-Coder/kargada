@@ -4,6 +4,7 @@ import { useEffect, useRef, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom'
 const AdminLogin = ()=>{
   const nav = useNavigate(null)
+  const hostServer = import.meta.env.VITE_SERVER_HOST
   axios.defaults.withCredentials = true;
   const [userName, setUserName] = useState(null)
   const [password, setPassword] = useState(null)
@@ -24,7 +25,7 @@ const AdminLogin = ()=>{
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
-      const result = await axios.post('http://127.0.0.1:12345/login', { userName, password });
+      const result = await axios.post(`${hostServer}/login`, { userName, password });
       if(result.data.success) {
         console.log(result.data.success)
         nav('/admin/dashboard')
