@@ -20,8 +20,7 @@
     "react-geocode": "^0.2.3",
     "react-map-gl": "^7.1.6",
     "react-router-dom": "^6.16.0",
-    "react-spinners": "^0.13.8",
-    "vite-plugin-pwa": "^0.16.6"
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
