@@ -683,3 +683,29 @@ body{
     }
 
 }
+
+.map-container {
+    height: 70vh;
+    width: 100%;
+
+    }
+
+.mapbox-directions-instructions .mapbox-directions-instructions-wrapper 
+.mapbox-directions-steps li .mapbox-directions-step-maneuver{
+    color: white;
+}
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib.mapboxgl-compact {
+    visibility: hidden;
+  }
+.mapboxgl-ctrl-logo{
+    visibility: hidden !important;
+}
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib{
+    visibility: hidden;
+}
+.mapboxgl-ctrl-geocoder input[type='text'] {
+    color: #000 !important;
+}
+button{
+    color: var(--dark-grey);
+}

@@ -1,9 +1,11 @@
 import axios from 'axios';
 import '../../public/assets/css/adminLayout/login.css'
 import { useEffect, useRef, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate, useOutletContext} from 'react-router-dom'
+import RiseLoader from "react-spinners/RiseLoader";
 const AdminLogin = ()=>{
   const nav = useNavigate(null)
+  const [isLoading, setIsLoading] = useState(false)
   const hostServer = import.meta.env.VITE_SERVER_HOST
   axios.defaults.withCredentials = true;
   const [userName, setUserName] = useState(null)
@@ -25,12 +27,14 @@ const AdminLogin = ()=>{
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
+      setIsLoading(true)
       const result = await axios.post(`${hostServer}/login`, { userName, password });
       if(result.data.success) {
-        console.log(result.data.success)
+        setIsLoading(false)
         nav('/admin/dashboard')
       }
       else {
+        setIsLoading(false)
         alert(result.data.message)
       }
       
@@ -61,10 +65,31 @@ const AdminLogin = ()=>{
     }, [])
    
 
+    
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    position: "fixed"
+  };
+  
 
     return(
   
             <>
+                  {isLoading && (
+       <>
+  <div className="loadingScreen"></div>
+  <div className="loadingHandler">
+  <RiseLoader
+  id='loader'
+  color="#1976D2"
+  cssOverride={override}
+  speedMultiplier={0.8}
+/>
+  </div>
+       </>)}
+
+
   <div className="background-image"></div>
   <div className="AdminLogin">
     <div className="img">
@@ -83,7 +108,8 @@ const AdminLogin = ()=>{
           </div>
           <div className="div">
             <h5>Username</h5>
-            <input type="text" className="input" name='username' onChange={(e)=>{setUserName(e.currentTarget.value)}} />
+            <input type="text" className="input" name='username' required autoComplete='username'
+             onChange={(e)=>{setUserName(e.currentTarget.value)}} />
           </div>
         </div>
         <div className="input-div pass">
@@ -92,7 +118,7 @@ const AdminLogin = ()=>{
           </div>
           <div className="div">
             <h5>Password</h5>
-            <input type="password" className="input" ref={passwordInput} name='password'
+            <input type="password" className="input" ref={passwordInput} name='password' required autoComplete='current-password'
              onChange={(e)=>{setPassword(e.currentTarget.value)}}/>
             <i className="fa fa-eye-slash" id='eye' aria-hidden="true" onClick={showPassword} ref={eye}></i>
           </div>

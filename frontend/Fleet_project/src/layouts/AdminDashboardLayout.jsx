@@ -76,11 +76,16 @@ const AdminDashboardLayout = ()=>{
   }
 
   const handleLogout = async () => 
-  {
-      const result = await axios.delete(`${hostServer}/logout`);
-      const message = result.data
-      console.log(message)
-      window.location.reload()
+  {   
+    try {
+      setIsLoading(true)
+      await axios.delete(`${hostServer}/logout`);
+      setIsLoading(false)
+      nav("/login")
+    } catch (error) {
+      console.log(error)
+    }
+  
   }
   useEffect(()=>
   {

@@ -78,6 +78,23 @@ route.get('/register', async (req, res)=>
     console.error(error)
   }
 
-
+})
+// Calculate Emissions and Consumptions
+route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
+{
+  const {miles, weight} = req.body
+  // Fuel Consumption
+    const runMiles = miles
+    const milesPerLiter = 21.58
+    const fuelConsumptionPerLiter = runMiles / milesPerLiter
+    const dieselFuelPricePerLiter = 66.52
+    const totalCostForAllDieselUsed = fuelConsumptionPerLiter * dieselFuelPricePerLiter
+  // Carbon Emissions
+    const truckEmissionFactorInGramsPerTonMiles = 161.8
+    const cargoWeight = weight
+    const totalAmountOfTonMiles = runMiles * cargoWeight;
+    const carbonEmissionsInGrams = totalAmountOfTonMiles * truckEmissionFactorInGramsPerTonMiles
+    res.json({fuelConsumption: fuelConsumptionPerLiter, fuelCost:totalCostForAllDieselUsed, 
+      carbonEmission: carbonEmissionsInGrams})
 })
 module.exports = route

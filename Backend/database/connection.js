@@ -1,11 +1,11 @@
 const mysql = require('mysql');
 
 const db = mysql.createPool({
-    host: 'o29.h.filess.io',
-    user:'fleet_lookupyet',
-    password:'6c907053a5417ebb84482d6cc68996432d1f768e',
-    database: "fleet_lookupyet",
-    port: "3307"
+    host: 'bjxwp9zadzdyfnlsid8b-mysql.services.clever-cloud.com',
+    user:'uyo3diweamt0qrca',
+    password:'SSSLkR8oQLwUFVl0kyWU',
+    database: "bjxwp9zadzdyfnlsid8b",
+    port: "3306"
 })
 
 module.exports = async (query) => {
