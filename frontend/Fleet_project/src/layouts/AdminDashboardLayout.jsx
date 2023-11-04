@@ -59,6 +59,7 @@ const AdminDashboardLayout = ()=>{
   const checkAuthentication = async () => {
 
     try {
+      console.log('hello')
       const result = await axios.get(`${hostServer}/homeAuthentication`)
       if(result.data.message){
         setAuthError(result.data.message)
@@ -219,12 +220,12 @@ const AdminDashboardLayout = ()=>{
        </>)}
       
         <div className="sidebar">
-    <Link to="/admin/dashboard" className="logo">
+    <a href="/admin/dashboard" className="logo">
       <img src="/assets/img/kargada-logo.png" alt="Company Logo"/>
       <div className="logo-name">
         <span>Kar</span>gada
       </div>
-    </Link>
+    </a>
     <ul className="side-menu">
       <li className='active'>
         <Link to="/admin/dashboard">

@@ -3,20 +3,32 @@ const route = express.Router()
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const db = require('../database/connection')
+const sessionStorage = require('sessionstorage-for-nodejs')
 
 const verifyToken = (req, res, next) => 
 {
-    if(req.cookies.token){
+  const dataToken = sessionStorage.getItem('token')
+    if(req.cookies.token || dataToken ){
         req.userToken = req.cookies.token
+        req.dataToken = dataToken
         next()
     }else {
       return res.json({message:'No token provided.'});
     }
 
 }
-
+route.get('/alreadyauthenticated', (req, res) => 
+{
+  const dataToken = sessionStorage.getItem('token')
+  if(dataToken){
+    res.json({auth: true})
+  }
+  else{
+    res.json({auth:false})
+  }
+})
 route.get('/homeAuthentication', verifyToken, (req, res) => {
-    jwt.verify(req.userToken, "secretkey", (err, authData)=>{
+    jwt.verify(req.dataToken, "secretkey", (err, authData)=>{
         if(err){
           return res.json({message: "token is expired, not valid!"})
         }else {
@@ -28,6 +40,7 @@ route.get('/homeAuthentication', verifyToken, (req, res) => {
 route.delete("/logout", (req, res) => 
 {
   res.clearCookie("token")
+  sessionStorage.removeItem('token', req.dataToken);
   return res.json({message: "Logout Successfully!"})
 })
 
@@ -49,8 +62,9 @@ route.post('/login', async (req, res)=>
           if(err){
             return res.json({message: "Cannot create token"})
           }
+          sessionStorage.setItem('token', token)
           res.cookie('token', token)
-          return res.json({success:"Login Success!"})
+          return res.json({success:"Login Success!", token})
         })
       }
     }
@@ -96,5 +110,12 @@ route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
     const carbonEmissionsInGrams = totalAmountOfTonMiles * truckEmissionFactorInGramsPerTonMiles
     res.json({fuelConsumption: fuelConsumptionPerLiter, fuelCost:totalCostForAllDieselUsed, 
       carbonEmission: carbonEmissionsInGrams})
+})
+
+route.get('/session', (req, res)=> 
+{
+  sessionStorage.setItem('id', 'hello')
+  const data = sessionStorage.getItem('id')
+  res.send(data)
 })
 module.exports = route

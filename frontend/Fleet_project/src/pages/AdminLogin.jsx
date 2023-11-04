@@ -23,6 +23,16 @@ const AdminLogin = ()=>{
       eye.current.classList = "fa fa-eye-slash"
     }
   }
+  const isAlreadyAuthenticated = async () => 
+  {
+    const res = await axios.get(`${hostServer}/alreadyauthenticated`)
+    if(res.data.auth){
+        nav('/admin/dashboard')
+        console.log(res.data.auth)
+    }else{
+      console.log(res.data.auth)
+    }
+  }
 
   const handleLogin = async (e) => {
     try {
@@ -31,6 +41,7 @@ const AdminLogin = ()=>{
       const result = await axios.post(`${hostServer}/login`, { userName, password });
       if(result.data.success) {
         setIsLoading(false)
+        console.log(result.data.token)
         nav('/admin/dashboard')
       }
       else {
@@ -44,6 +55,7 @@ const AdminLogin = ()=>{
   };
     useEffect(()=>
     {
+        isAlreadyAuthenticated()
         const inputs = document.querySelectorAll(".input");
         function addcl(){
             let parent = this.parentNode.parentNode;
