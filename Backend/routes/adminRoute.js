@@ -7,10 +7,8 @@ const sessionStorage = require('sessionstorage-for-nodejs')
 
 const verifyToken = (req, res, next) => 
 {
-  const dataToken = sessionStorage.getItem('token')
-    if(req.cookies.token || dataToken ){
+    if(req.cookies.token){
         req.userToken = req.cookies.token
-        req.dataToken = dataToken
         next()
     }else {
       return res.json({message:'No token provided.'});
@@ -19,16 +17,17 @@ const verifyToken = (req, res, next) =>
 }
 route.get('/alreadyauthenticated', (req, res) => 
 {
-  const dataToken = sessionStorage.getItem('token')
-  if(dataToken){
+  const token = global.userToken
+  if(token){
     res.json({auth: true})
+    console.log(token)
   }
   else{
     res.json({auth:false})
   }
 })
 route.get('/homeAuthentication', verifyToken, (req, res) => {
-    jwt.verify(req.dataToken, "secretkey", (err, authData)=>{
+    jwt.verify(req.userToken, "secretkey", (err, authData)=>{
         if(err){
           return res.json({message: "token is expired, not valid!"})
         }else {
@@ -62,7 +61,7 @@ route.post('/login', async (req, res)=>
           if(err){
             return res.json({message: "Cannot create token"})
           }
-          sessionStorage.setItem('token', token)
+          global.userToken = token
           res.cookie('token', token)
           return res.json({success:"Login Success!", token})
         })
