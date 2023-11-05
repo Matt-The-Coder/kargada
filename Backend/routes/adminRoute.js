@@ -3,7 +3,7 @@ const route = express.Router()
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const db = require('../database/connection')
-const sessionStorage = require('sessionstorage-for-nodejs')
+
 
 const verifyToken = (req, res, next) => 
 {
