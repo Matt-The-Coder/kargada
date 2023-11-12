@@ -11,6 +11,7 @@ const AdminLogin = ()=>{
   const [userName, setUserName] = useState(null)
   const [password, setPassword] = useState(null)
   const eye = useRef(null)
+  const mainContainer = useRef(null)
   const passwordInput = useRef(null)
   const showPassword = () =>
   { 
@@ -32,6 +33,14 @@ const AdminLogin = ()=>{
     }else{
       console.log(res.data.auth)
     }
+  }
+  const handleSignUp = () => 
+  {
+      mainContainer.current.classList.add("sign-up-mode")
+  }
+  const handleSignIn = () => 
+  {
+    mainContainer.current.classList.remove("sign-up-mode")
   }
 
   const handleLogin = async (e) => {
@@ -56,34 +65,13 @@ const AdminLogin = ()=>{
     useEffect(()=>
     {
         isAlreadyAuthenticated()
-        const inputs = document.querySelectorAll(".input");
-        function addcl(){
-            let parent = this.parentNode.parentNode;
-            parent.classList.add("focus");
-        }
-        
-        function remcl(){
-            let parent = this.parentNode.parentNode;
-            if(this.value == ""){
-                parent.classList.remove("focus");
-            }
-        }
-            
-        inputs.forEach(input => {
-            input.addEventListener("focus", addcl);
-            input.addEventListener("blur", remcl);
-        });
-        
     }, [])
    
-
-    
-  const override = {
-    display: "block",
-    margin: "0 auto",
-    position: "fixed"
-  };
-  
+    const override = {
+      display: "block",
+      margin: "0 auto",
+      position: "fixed"
+    };
 
     return(
   
@@ -100,47 +88,104 @@ const AdminLogin = ()=>{
 />
   </div>
        </>)}
-
-
-  <div className="background-image"></div>
-  <div className="AdminLogin">
-    <div className="img">
-      <Link to="/">
-      <img src="/assets/img/kargada-logo-name.png" />
-      </Link>
-     
-    </div>
-    <div className="login-content">
-      <form action="index.html" onSubmit={handleLogin}>
-       <Link to='/' id='image-link'><img src="/assets/img/avatar.svg"/></Link> 
-        <h2 className="title">Welcome</h2>
-        <div className="input-div one">
-          <div className="i">
-            <i className="fas fa-user" />
-          </div>
-          <div className="div">
-            <h5>Username</h5>
-            <input type="text" className="input" name='username' required autoComplete='username'
-             onChange={(e)=>{setUserName(e.currentTarget.value)}} />
-          </div>
+  <div className="AdminLogin" ref={mainContainer}>
+  <div className="forms-container">
+    <div className="signin-signup">
+      <form action="#" className="sign-in-form" onSubmit={handleLogin}>
+        <h2 className="title">Sign in</h2>
+        <div className="input-field">
+          <i className="fas fa-user" />
+          <input type="text" placeholder="Username"
+          onChange={(e)=>{setUserName(e.currentTarget.value)}}/>
         </div>
-        <div className="input-div pass">
-          <div className="i">
-            <i className="fas fa-lock" />
-          </div>
-          <div className="div">
-            <h5>Password</h5>
-            <input type="password" className="input" ref={passwordInput} name='password' required autoComplete='current-password'
-             onChange={(e)=>{setPassword(e.currentTarget.value)}}/>
-            <i className="fa fa-eye-slash" id='eye' aria-hidden="true" onClick={showPassword} ref={eye}></i>
-          </div>
+        <div className="input-field">
+          <i className="fas fa-lock" />
+          <input type="password" placeholder="Password" ref={passwordInput}
+          onChange={(e)=>{setPassword(e.currentTarget.value)}}/>
+           {/* <i className="fa fa-eye-slash" id='eyes' aria-hidden="true" 
+           style={{position:"relative", left:"23vw", bottom: "4.1vw"}}
+            onClick={showPassword} ref={eye}></i> */}
         </div>
-        <a href="#">Forgot Password?</a>
-      
-      <button type='submit' className='btn'>Login</button>
-
+        <input type="submit" defaultValue="Login" className="btn solid"/>
+        <p className="social-text">Or Sign in with social platforms</p>
+        <div className="social-media">
+          <a href="#" className="social-icon">
+            <i className="fab fa-facebook-f" />
+          </a>
+          <a href="#" className="social-icon">
+            <i className="fab fa-twitter" />
+          </a>
+          <a href="#" className="social-icon">
+            <i className="fab fa-google" />
+          </a>
+          <a href="#" className="social-icon">
+            <i className="fab fa-linkedin-in" />
+          </a>
+        </div>
+      </form>
+      <form action="#" className="sign-up-form">
+        <h2 className="title">Sign up</h2>
+        <div className="input-field">
+          <i className="fas fa-user" />
+          <input type="text" placeholder="Username" />
+        </div>
+        <div className="input-field">
+          <i className="fas fa-envelope" />
+          <input type="email" placeholder="Email" />
+        </div>
+        <div className="input-field">
+          <i className="fas fa-lock" />
+          <input type="password" placeholder="Password" />
+        </div>
+        <input type="submit" className="btn" defaultValue="Sign up" />
+        <p className="social-text">Or Sign up with social platforms</p>
+        <div className="social-media">
+          <a href="#" className="social-icon">
+            <i className="fab fa-facebook-f" />
+          </a>
+          <a href="#" className="social-icon">
+            <i className="fab fa-twitter" />
+          </a>
+          <a href="#" className="social-icon">
+            <i className="fab fa-google" />
+          </a>
+          <a href="#" className="social-icon">
+            <i className="fab fa-linkedin-in" />
+          </a>
+        </div>
       </form>
     </div>
+  </div>
+  <div className="panels-container">
+    <div className="panel left-panel">
+      <div className="loginContent">
+        <h3>New here ?</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex
+          ratione. Aliquid!
+        </p>
+        <button className="btn transparent" id="sign-up-btn" onClick={handleSignUp} >
+          Sign up
+        </button>
+      </div>
+      <img src="/assets/img/log.svg" className="image" alt="" />
+    </div>
+    <div className="panel right-panel">
+      <div className="loginContent">
+        <h3>One of us ?</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+          laboriosam ad deleniti.
+        </p>
+        <button className="btn transparent" id="sign-in-btn" onClick={handleSignIn}>
+          Sign in
+        </button>
+      </div>
+      <img src="/assets/img/register.svg" className="image" alt="" />
+    </div>
+  </div>
+
+
   </div>
 </>
 

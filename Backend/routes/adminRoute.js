@@ -7,7 +7,9 @@ const db = require('../database/connection')
 
 const verifyToken = (req, res, next) => 
 {
-    if(req.cookies.token){
+  const token = req.session.token
+    if(token){
+        req.sessionToken = token
         req.userToken = req.cookies.token
         next()
     }else {
@@ -17,17 +19,16 @@ const verifyToken = (req, res, next) =>
 }
 route.get('/alreadyauthenticated', (req, res) => 
 {
-  const token = global.userToken
-  if(token){
+
+  if(req.session.token){
     res.json({auth: true})
-    console.log(token)
   }
   else{
     res.json({auth:false})
   }
 })
 route.get('/homeAuthentication', verifyToken, (req, res) => {
-    jwt.verify(req.userToken, "secretkey", (err, authData)=>{
+    jwt.verify(req.sessionToken, "secretkey", (err, authData)=>{
         if(err){
           return res.json({message: "token is expired, not valid!"})
         }else {
@@ -39,8 +40,13 @@ route.get('/homeAuthentication', verifyToken, (req, res) => {
 route.delete("/logout", (req, res) => 
 {
   res.clearCookie("token")
-  sessionStorage.removeItem('token', req.dataToken);
-  return res.json({message: "Logout Successfully!"})
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.status(500).json({ message: 'Failed to logout' });
+    }
+    return res.json({ message: 'Logout Successful!' });
+  });
 })
 
 route.post('/login', async (req, res)=>
@@ -57,12 +63,13 @@ route.post('/login', async (req, res)=>
           return res.json({message: "Password is Incorrect!"})
       }
       else {
+
          jwt.sign({user: user}, "secretkey", {expiresIn: '1d'}, (err, token)=>{
           if(err){
             return res.json({message: "Cannot create token"})
           }
-          global.userToken = token
           res.cookie('token', token)
+          req.session.token = token
           return res.json({success:"Login Success!", token})
         })
       }
@@ -113,8 +120,7 @@ route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
 
 route.get('/session', (req, res)=> 
 {
-  sessionStorage.setItem('id', 'hello')
-  const data = sessionStorage.getItem('id')
-  res.send(data)
+
+  res.send('data')
 })
 module.exports = route

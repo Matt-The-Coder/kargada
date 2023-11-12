@@ -6,9 +6,15 @@ const origin = process.env.ORIGIN
 const axios = require('axios')
 const cors = require('cors') 
 const cookieParser = require('cookie-parser')
+const session = require('express-session')
 const VITE_MAPBOX_API = "pk.eyJ1Ijoibm9haGtseWRlMTciLCJhIjoiY2xvZTF3djYwMDczdTJtcGY3dXdibHR4aSJ9.0VgWjkWc6WcgV4DarLZTGw"
 app.use(express.json());
 app.use(cookieParser())
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true
+}))
 var corsOptions = {
     origin: [origin],
     methods: ["POST", "GET", "DELETE"],
