@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) =>
   const token = req.session.token
     if(token){
         req.sessionToken = token
-        req.userToken = req.cookies.token
+        // req.userToken = req.cookies.token
         next()
     }else {
       return res.json({message:'No token provided.'});
@@ -39,7 +39,7 @@ route.get('/homeAuthentication', verifyToken, (req, res) => {
 
 route.delete("/logout", (req, res) => 
 {
-  res.clearCookie("token")
+  // res.clearCookie("token")
   req.session.destroy((err) => {
     if (err) {
       console.error('Error destroying session:', err);
@@ -68,7 +68,7 @@ route.post('/login', async (req, res)=>
           if(err){
             return res.json({message: "Cannot create token"})
           }
-          res.cookie('token', token)
+          // res.cookie('token', token)
           req.session.token = token
           return res.json({success:"Login Success!", token})
         })
