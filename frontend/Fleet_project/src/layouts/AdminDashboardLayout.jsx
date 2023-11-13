@@ -21,6 +21,7 @@ const AdminDashboardLayout = ()=>{
   const [isAuth, setIsAuth] = useState(false)
   const [user, setUser] = useState(null)
   const [authError, setAuthError] = useState(null)
+  const [mapStyle, setMapStyle] = useState('streets-v12')
   const toggleDropdown = (e) => {
       switch(e.id) {
         case'drivers': setDriverDropdown(!driverDropdown) 
@@ -126,7 +127,6 @@ const AdminDashboardLayout = ()=>{
           }
         };
         
-        
     
         // Function to handle search button click
         const handleSearchBtnClick = (e) => {
@@ -199,6 +199,16 @@ const AdminDashboardLayout = ()=>{
         };
       
       }, []); // Empty dependency array ensures this code runs only once, like componentDidMount
+
+      const setMapTheme = () => 
+      {
+        if(mapStyle == 'streets-v12')
+        {
+          setMapStyle('navigation-night-v1')
+        }else{
+          setMapStyle('streets-v12')
+        }
+      }
     return(
 
 
@@ -486,8 +496,8 @@ const AdminDashboardLayout = ()=>{
           </button>
         </div>
       </form>
-      <input type="checkbox" id="theme-toggle" hidden="" />
-      <label htmlFor="theme-toggle" className="theme-toggle" />
+      <input type="checkbox" id="theme-toggle" hidden="" onClick={setMapTheme}/>
+      <label htmlFor="theme-toggle" className="theme-toggle" onClick={setMapTheme} />
       <a href="#" className="notif">
         <i className="bx bx-bell" />
         <span className="count">12</span>
@@ -498,7 +508,7 @@ const AdminDashboardLayout = ()=>{
     </nav>
     {/* End of Navbar */}
     <main>
-         <Outlet context={{isLoading, setIsLoading, ...user}}/>
+         <Outlet context={{isLoading, setIsLoading, ...user, mapStyle, setMapStyle}}/>
 
     </main>
   </div>

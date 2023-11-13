@@ -106,8 +106,8 @@ const AdminLogin = ()=>{
            style={{position:"relative", left:"23vw", bottom: "4.1vw"}}
             onClick={showPassword} ref={eye}></i> */}
         </div>
-        <input type="submit" defaultValue="Login" className="btn solid"/>
-        <p className="social-text">Or Sign in with social platforms</p>
+        <input type="submit" value="Login" className="btn solid" />
+        {/* <p className="social-text">Or Sign in with social platforms</p>
         <div className="social-media">
           <a href="#" className="social-icon">
             <i className="fab fa-facebook-f" />
@@ -121,7 +121,7 @@ const AdminLogin = ()=>{
           <a href="#" className="social-icon">
             <i className="fab fa-linkedin-in" />
           </a>
-        </div>
+        </div> */}
       </form>
       <form action="#" className="sign-up-form">
         <h2 className="title">Sign up</h2>
@@ -137,8 +137,8 @@ const AdminLogin = ()=>{
           <i className="fas fa-lock" />
           <input type="password" placeholder="Password" />
         </div>
-        <input type="submit" className="btn" defaultValue="Sign up" />
-        <p className="social-text">Or Sign up with social platforms</p>
+        <input type="submit" className="btn" value="Register" />
+        {/* <p className="social-text">Or Sign up with social platforms</p>
         <div className="social-media">
           <a href="#" className="social-icon">
             <i className="fab fa-facebook-f" />
@@ -152,7 +152,7 @@ const AdminLogin = ()=>{
           <a href="#" className="social-icon">
             <i className="fab fa-linkedin-in" />
           </a>
-        </div>
+        </div> */}
       </form>
     </div>
   </div>
@@ -161,8 +161,9 @@ const AdminLogin = ()=>{
       <div className="loginContent">
         <h3>New here ?</h3>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex
-          ratione. Aliquid!
+        Ready to ship with ease?
+Sign up now and experience seamless freight management!
+
         </p>
         <button className="btn transparent" id="sign-up-btn" onClick={handleSignUp} >
           Sign up
@@ -174,8 +175,8 @@ const AdminLogin = ()=>{
       <div className="loginContent">
         <h3>One of us ?</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-          laboriosam ad deleniti.
+        Welcome aboard the kargada freight services!
+Join us and experience seamless shipping like never before.
         </p>
         <button className="btn transparent" id="sign-in-btn" onClick={handleSignIn}>
           Sign in
