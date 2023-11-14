@@ -60,7 +60,6 @@ const AdminDashboardLayout = ()=>{
   const checkAuthentication = async () => {
 
     try {
-      console.log('hello')
       const result = await axios.get(`${hostServer}/homeAuthentication`)
       if(result.data.message){
         setAuthError(result.data.message)
@@ -202,12 +201,16 @@ const AdminDashboardLayout = ()=>{
 
       const setMapTheme = () => 
       {
-        if(mapStyle == 'streets-v12')
-        {
-          setMapStyle('navigation-night-v1')
-        }else{
-          setMapStyle('streets-v12')
-        }
+
+        setTimeout(()=>{
+          if(mapStyle == 'streets-v12')
+          {
+            setMapStyle('navigation-night-v1')
+          }else{
+            setMapStyle('streets-v12')
+          }
+        }, 100)
+     
       }
     return(
 
@@ -500,7 +503,7 @@ const AdminDashboardLayout = ()=>{
       <label htmlFor="theme-toggle" className="theme-toggle" onClick={setMapTheme} />
       <a href="#" className="notif">
         <i className="bx bx-bell" />
-        <span className="count">12</span>
+        <span className="count"></span>
       </a>
       <a href="#" className="profile">
         <img src="/assets/img/prof-pic.jpg" />

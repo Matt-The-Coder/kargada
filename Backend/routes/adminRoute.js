@@ -3,7 +3,7 @@ const route = express.Router()
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const db = require('../database/connection')
-
+const axios = require('axios')
 
 const verifyToken = (req, res, next) => 
 {
@@ -118,9 +118,14 @@ route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
       carbonEmission: carbonEmissionsInGrams})
 })
 
-route.get('/session', (req, res)=> 
-{
-
-  res.send('data')
+route.get('/weatherdata', async (req, res)=> 
+{   
+  let latitude = req.query.lat;
+  let longitude = req.query.lon
+    const API = process.env.WEATHER_API
+    const weatherData = await axios.get(`https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${API}`)
+    const weatherAlert = await axios.get(`https://api.weatherbit.io/v2.0/alerts?lat=${latitude}&lon=${longitude}&key=${API}`);
+    res.json({weatherData:weatherData.data.data[0], weatherAlert:weatherAlert.data})
 })
+
 module.exports = route
