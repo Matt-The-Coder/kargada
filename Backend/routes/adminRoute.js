@@ -102,7 +102,7 @@ route.get('/register', async (req, res)=>
 // Calculate Emissions and Consumptions
 route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
 {
-  const {miles, weight} = req.body
+  const {miles, weight} = req.query
   // Fuel Consumption
     const runMiles = miles
     const milesPerLiter = 21.58

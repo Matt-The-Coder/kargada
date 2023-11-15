@@ -32,7 +32,7 @@ const HistoryTracking = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: `mapbox://styles/mapbox/${mapStyle}`,
-      center: [lng, lat],
+      center: [positionData?positionData.longitude:lng, positionData?positionData.latitude:lat],
       zoom: zoom,
     });
 
@@ -63,11 +63,11 @@ const HistoryTracking = () => {
       })
     );
 
-    map.current.on('click', (e) => {
-      const clickedLngLat = e.lngLat.toArray();
-      const waypointIndex = directions.current.getWaypoints().length;
-      directions.current.addWaypoint(waypointIndex, clickedLngLat);
-    });
+    // map.current.on('click', (e) => {
+    //   const clickedLngLat = e.lngLat.toArray();
+    //   const waypointIndex = directions.current.getWaypoints().length;
+    //   directions.current.addWaypoint(waypointIndex, clickedLngLat);
+    // });
   };
   const calculteWeatherCondition = async () => {
     try {
@@ -89,12 +89,23 @@ const HistoryTracking = () => {
     }
   }
 
+  const calculateCarbonEmissions = async () =>
+  {
+    try {
+      const result = await axios.get(`/calculateFuelConsumptionWithPrice?miles=10&weight=2000`)
+      const data = result.data
+      console.log(data)
+    } catch (error) {
+      
+    }
+
+  }
+
 
   const setDirections = async () => {
-    directions.current.setOrigin([121.028608, 14.6440192]);
+    directions.current.setOrigin([positionData.longitude, positionData.latitude]);
     directions.current.setDestination([121.0417, 14.7286]);
     calculteWeatherCondition()
-    console.log(positionData);
   };
 
   const toggleInstructions = () => {
@@ -105,17 +116,28 @@ const HistoryTracking = () => {
     setShowInstructions(!showInstructions);
   };
 
-
+  useEffect(()=>{
+    const succcessPosition = (position) => {
+      const data = position.coords;
+      setPositionData(data);
+    };
+    const errorPosition = (position) => 
+    {
+      setPositionData(position.coords.longitude, position.coords.latitude);
+    }
+    navigator.geolocation.watchPosition(succcessPosition, errorPosition, {
+      enableHighAccuracy: true,
+    })
+  }, [])
   useEffect(() => {
     setIsLoading(true);
     const successLocation = (position) => {
       const data = position.coords;
-      setPositionData(data);
       setupMap(data.longitude, data.latitude);
     };
 
-    const errorLocation = (position) => {
-      setupMap(position.coords.longitude, position.coords.latitude);
+    const errorLocation = () => {
+      setupMap();
     };
 
     navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
@@ -135,6 +157,22 @@ const HistoryTracking = () => {
       <button onClick={toggleInstructions}>
         {showInstructions ? 'Hide Instructions' : 'Show Instructions'}
       </button>
+      <div className="transportData">
+            <h3>Transportation Data</h3>
+            {/* <p>Current Location: {formattedCurrentLocation}</p>
+            <p>Destination: {address}</p>
+            <p>Distance: {distance}</p>
+            {carbonEmissions && (
+              <p>Transport Method: {carbonEmissions.data ? <label>{carbonEmissions.data.attributes.transport_method}</label> : carbonEmissions.message}</p>
+            )}
+            {carbonEmissions && (
+              <p>Cargo Weight: {carbonEmissions.data ? <label>{carbonEmissions.data.attributes.weight_value} kg</label> : carbonEmissions.message}</p>
+            )} */}
+            {positionData && <p>Speed: {positionData.speed == null ? <label>You are idle or not moving</label> : <label>{positionData.speed} m/s</label>}</p>}
+            {positionData && <p>Altitude: {positionData.altitude == null ? <label>You are idle or not moving</label> : <label>{positionData.altitude} meters</label>}</p>}
+            {positionData && <p>Accuracy: {positionData.accuracy}</p>}
+            {driveTime && <p>Drive Time: {driveTime}</p>}
+            </div>
       <div className="weatherData">
         <h3>Weather Condition</h3>
         {weatherCondition && <p>Current Weather: {weatherCondition.weather.description} </p> &&

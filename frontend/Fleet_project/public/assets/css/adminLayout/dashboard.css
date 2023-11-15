@@ -695,13 +695,13 @@ body{
     color: white;
 }
 .mapboxgl-ctrl.mapboxgl-ctrl-attrib.mapboxgl-compact {
-    visibility: hidden;
+    visibility: hidden !important;
   }
 .mapboxgl-ctrl-logo{
     visibility: hidden !important;
 }
 .mapboxgl-ctrl.mapboxgl-ctrl-attrib{
-    visibility: hidden;
+    visibility: hidden !important;
 }
 .mapboxgl-ctrl-geocoder input[type='text'] {
     color: #000 !important;
