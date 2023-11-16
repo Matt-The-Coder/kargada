@@ -17,6 +17,7 @@ const HistoryTracking = () => {
   const [zoom, setZoom] = useState(15);
   const [mapDirection, setMapDirection] = useState(null);
   const directions = useRef(null);
+  const markerTrack = useRef(null)
   const [address, setAddress] = useState('');
   const [distance, setDistance] = useState(null);
   const [formattedCurrentLocation, setFormattedCurrentLocation] = useState('')
@@ -47,6 +48,12 @@ const HistoryTracking = () => {
       }
     });
 
+
+    // Create a marker with the custom element
+    const newMarker = new mapboxgl.Marker({ element: markerTrack.current, pitchAlignment:"auto", rotationAlignment: "horizon" }).setLngLat([positionData?positionData.longitude:lng, positionData?positionData.latitude:lat]).addTo(map.current);
+    newMarker.setRotation(positionData?.heading)
+    console.log(newMarker)
+
     // Add the MapboxDirections control to the map
     map.current.addControl(directions.current, 'top-left');
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
@@ -63,11 +70,13 @@ const HistoryTracking = () => {
       })
     );
 
+
     // map.current.on('click', (e) => {
     //   const clickedLngLat = e.lngLat.toArray();
     //   const waypointIndex = directions.current.getWaypoints().length;
     //   directions.current.addWaypoint(waypointIndex, clickedLngLat);
     // });
+    
   };
   const calculteWeatherCondition = async () => {
     try {
@@ -157,6 +166,8 @@ const HistoryTracking = () => {
       <button onClick={toggleInstructions}>
         {showInstructions ? 'Hide Instructions' : 'Show Instructions'}
       </button>
+      <div id="markerTrack" ref={markerTrack}>     
+      </div>
       <div className="transportData">
             <h3>Transportation Data</h3>
             {/* <p>Current Location: {formattedCurrentLocation}</p>
@@ -171,6 +182,7 @@ const HistoryTracking = () => {
             {positionData && <p>Speed: {positionData.speed == null ? <label>You are idle or not moving</label> : <label>{positionData.speed} m/s</label>}</p>}
             {positionData && <p>Altitude: {positionData.altitude == null ? <label>You are idle or not moving</label> : <label>{positionData.altitude} meters</label>}</p>}
             {positionData && <p>Accuracy: {positionData.accuracy}</p>}
+            {positionData && <p>Heading: {positionData?.heading}</p>}
             {driveTime && <p>Drive Time: {driveTime}</p>}
             </div>
       <div className="weatherData">

@@ -11,7 +11,7 @@
 	--light-danger: #FECDD3;
     --warning: #FBC02D;
     --light-warning: #FFF2C6;
-    --success: #388E3C;
+    --success: #1976D2;
     --light-success: #BBF7D0;
 }
 
@@ -708,4 +708,13 @@ body{
 }
 button{
     color: var(--dark-grey);
+}
+#markerTrack{
+    height: 30px;
+    width: 30px;
+    background-image: url('/assets/img/truck-vehicle.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
