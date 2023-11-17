@@ -18,6 +18,7 @@ const HistoryTracking = () => {
   const [mapDirection, setMapDirection] = useState(null);
   const directions = useRef(null);
   const markerTrack = useRef(null)
+  const marker = useRef(null)
   const [address, setAddress] = useState('');
   const [distance, setDistance] = useState(null);
   const [formattedCurrentLocation, setFormattedCurrentLocation] = useState('')
@@ -33,7 +34,7 @@ const HistoryTracking = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: `mapbox://styles/mapbox/${mapStyle}`,
-      center: [positionData?positionData.longitude:lng, positionData?positionData.latitude:lat],
+      center: [positionData ? positionData.longitude : lng, positionData ? positionData.latitude : lat],
       zoom: zoom,
     });
 
@@ -50,9 +51,10 @@ const HistoryTracking = () => {
 
 
     // Create a marker with the custom element
-    const newMarker = new mapboxgl.Marker({ element: markerTrack.current, pitchAlignment:"auto", rotationAlignment: "horizon" }).setLngLat([positionData?positionData.longitude:lng, positionData?positionData.latitude:lat]).addTo(map.current);
-    newMarker.setRotation(positionData?.heading)
-    console.log(newMarker)
+    marker.current = new mapboxgl.Marker({
+      element: markerTrack.current, pitchAlignment: "auto"
+    }).setPopup(new mapboxgl.Popup().setHTML("<h4>I'm Here!</h4>")) // add popup
+
 
     // Add the MapboxDirections control to the map
     map.current.addControl(directions.current, 'top-left');
@@ -76,7 +78,7 @@ const HistoryTracking = () => {
     //   const waypointIndex = directions.current.getWaypoints().length;
     //   directions.current.addWaypoint(waypointIndex, clickedLngLat);
     // });
-    
+
   };
   const calculteWeatherCondition = async () => {
     try {
@@ -98,14 +100,13 @@ const HistoryTracking = () => {
     }
   }
 
-  const calculateCarbonEmissions = async () =>
-  {
+  const calculateCarbonEmissions = async () => {
     try {
       const result = await axios.get(`/calculateFuelConsumptionWithPrice?miles=10&weight=2000`)
       const data = result.data
       console.log(data)
     } catch (error) {
-      
+
     }
 
   }
@@ -119,19 +120,21 @@ const HistoryTracking = () => {
 
   const toggleInstructions = () => {
     const instructionsContainer = document.querySelector(
-      '.mapboxgl-ctrl-directions.mapboxgl-ctrl' 
+      '.mapboxgl-ctrl-directions.mapboxgl-ctrl'
     );
     instructionsContainer.style.visibility = showInstructions ? 'hidden' : 'visible';
     setShowInstructions(!showInstructions);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     const succcessPosition = (position) => {
       const data = position.coords;
       setPositionData(data);
+      marker.current.setLngLat([data?.longitude, data?.latitude]).addTo(map.current);
+      marker.current.setRotation(positionData?.heading)
+      console.log(marker.current)
     };
-    const errorPosition = (position) => 
-    {
+    const errorPosition = (position) => {
       setPositionData(position.coords.longitude, position.coords.latitude);
     }
     navigator.geolocation.watchPosition(succcessPosition, errorPosition, {
@@ -166,11 +169,11 @@ const HistoryTracking = () => {
       <button onClick={toggleInstructions}>
         {showInstructions ? 'Hide Instructions' : 'Show Instructions'}
       </button>
-      <div id="markerTrack" ref={markerTrack}>     
+      <div id="markerTrack" ref={markerTrack}>
       </div>
       <div className="transportData">
-            <h3>Transportation Data</h3>
-            {/* <p>Current Location: {formattedCurrentLocation}</p>
+        <h3>Transportation Data</h3>
+        {/* <p>Current Location: {formattedCurrentLocation}</p>
             <p>Destination: {address}</p>
             <p>Distance: {distance}</p>
             {carbonEmissions && (
@@ -179,12 +182,12 @@ const HistoryTracking = () => {
             {carbonEmissions && (
               <p>Cargo Weight: {carbonEmissions.data ? <label>{carbonEmissions.data.attributes.weight_value} kg</label> : carbonEmissions.message}</p>
             )} */}
-            {positionData && <p>Speed: {positionData.speed == null ? <label>You are idle or not moving</label> : <label>{positionData.speed} m/s</label>}</p>}
-            {positionData && <p>Altitude: {positionData.altitude == null ? <label>You are idle or not moving</label> : <label>{positionData.altitude} meters</label>}</p>}
-            {positionData && <p>Accuracy: {positionData.accuracy}</p>}
-            {positionData && <p>Heading: {positionData?.heading}</p>}
-            {driveTime && <p>Drive Time: {driveTime}</p>}
-            </div>
+        {positionData && <p>Speed: {positionData.speed == null ? <label>You are idle or not moving</label> : <label>{positionData?.speed.toFixed(0)} m/s</label>}</p>}
+        {positionData && <p>Altitude: {positionData.altitude == null ? <label>You are idle or not moving</label> : <label>{positionData?.altitude.toFixed(0)} meters</label>}</p>}
+        {positionData && <p>Accuracy: {positionData?.accuracy.toFixed(0)}</p>}
+        {positionData && <p>Heading: {positionData?.heading}</p>}
+        {driveTime && <p>Drive Time: {driveTime}</p>}
+      </div>
       <div className="weatherData">
         <h3>Weather Condition</h3>
         {weatherCondition && <p>Current Weather: {weatherCondition.weather.description} </p> &&
