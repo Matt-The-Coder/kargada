@@ -22,3 +22,7 @@ To run backend
   - npm install
   - npm install -g nodemon
   - npm run dev
+
+To login:
+-username: rm
+-password: 123
