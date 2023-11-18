@@ -230,8 +230,8 @@ body{
 }
 
 .sidebar.close~.content{
-    width: calc(100% - 60px);
-    left: 60px;
+    width: calc(100% - 0px);
+    left: 0px;
 }
 
 .content nav{

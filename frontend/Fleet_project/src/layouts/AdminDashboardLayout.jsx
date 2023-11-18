@@ -100,6 +100,7 @@ const AdminDashboardLayout = ()=>{
           const sideLinks = document.querySelectorAll('.sidebar .side-menu  li a:not(.logout)');
           sideLinks.forEach((item) => item.parentElement.classList.remove('active'));
           e.target.parentElement.classList.add('active');
+          console.log(sideLinks)
         };
 
 
@@ -118,11 +119,13 @@ const AdminDashboardLayout = ()=>{
               // Apply styles for smooth hiding
               menu.style.opacity = '0.5';
             });
+            sideBar.style.display = "none"
           } else {
             sideMenu.forEach((menu) => {
               // Apply styles for smooth showing
               menu.style.opacity = '1';
             });
+            sideBar.style.display = "block"
           }
         };
         
@@ -142,22 +145,22 @@ const AdminDashboardLayout = ()=>{
           }
         };
 
-        // Function to handle window resize
-        const handleWindowResize = () => {
-          const sideBar = document.querySelector('.sidebar');
-          if (window.innerWidth < 768) {
-            sideBar.classList.add('close');
-          } else {
-            sideBar.classList.remove('close');
-          }
+        // // Function to handle window resize
+        // const handleWindowResize = () => {
+        //   const sideBar = document.querySelector('.sidebar');
+        //   if (window.innerWidth < 768) {
+        //     sideBar.classList.add('close');
+        //   } else {
+        //     sideBar.classList.remove('close');
+        //   }
     
-          const searchForm = document.querySelector('.content nav form');
-          const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
-          if (window.innerWidth > 576) {
-            searchBtnIcon.classList.replace('bx-x', 'bx-search');
-            searchForm.classList.remove('show');
-          }
-        };
+        //   const searchForm = document.querySelector('.content nav form');
+        //   const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
+        //   if (window.innerWidth > 576) {
+        //     searchBtnIcon.classList.replace('bx-x', 'bx-search');
+        //     searchForm.classList.remove('show');
+        //   }
+        // };
     
         // Function to handle theme toggle
         const handleThemeToggle = () => {
@@ -181,7 +184,7 @@ const AdminDashboardLayout = ()=>{
         const searchBtn = document.querySelector('.content nav form .form-input button');
         searchBtn.addEventListener('click', handleSearchBtnClick);
     
-        window.addEventListener('resize', handleWindowResize);
+        // window.addEventListener('resize', handleWindowResize);
     
         const toggler = document.getElementById('theme-toggle');
         toggler.addEventListener('change', handleThemeToggle);
@@ -193,7 +196,7 @@ const AdminDashboardLayout = ()=>{
           });
           menuBar.removeEventListener('click', handleMenuBarClick);
           searchBtn.removeEventListener('click', handleSearchBtnClick);
-          window.removeEventListener('resize', handleWindowResize);
+          // window.removeEventListener('resize', handleWindowResize);
           toggler.removeEventListener('change', handleThemeToggle);
         };
       
@@ -240,7 +243,7 @@ const AdminDashboardLayout = ()=>{
       </div>
     </a>
     <ul className="side-menu">
-      <li className='active'>
+      <li>
         <Link to="/admin/dashboard">
           <i className="bx bxs-dashboard" />
           Dashboard

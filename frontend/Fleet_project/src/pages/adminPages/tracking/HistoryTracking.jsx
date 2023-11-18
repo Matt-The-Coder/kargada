@@ -52,7 +52,7 @@ const HistoryTracking = () => {
 
     // Create a marker with the custom element
     marker.current = new mapboxgl.Marker({
-      element: markerTrack.current, pitchAlignment: "auto"
+      element: markerTrack.current, scale: '0'
     }).setPopup(new mapboxgl.Popup().setHTML("<h4>I'm Here!</h4>")) // add popup
 
 
@@ -131,7 +131,7 @@ const HistoryTracking = () => {
       const data = position.coords;
       setPositionData(data);
       marker.current.setLngLat([data?.longitude, data?.latitude]).addTo(map.current);
-      marker.current.setRotation(positionData?.heading)
+      marker.current.setRotation(data?.heading)
       console.log(marker.current)
     };
     const errorPosition = (position) => {
