@@ -716,5 +716,5 @@ button{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
+    transition: ease-in 0.2s;
 }
