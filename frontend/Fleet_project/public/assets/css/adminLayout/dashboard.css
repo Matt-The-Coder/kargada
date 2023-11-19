@@ -61,6 +61,7 @@ body{
     overflow-x: hidden;
     scrollbar-width: none;
     transition: all 0.3s ease;
+    display: none;
 }
 
 .sidebar::-webkit-scrollbar{
@@ -685,7 +686,7 @@ body{
 }
 
 .map-container {
-    height: 70vh;
+    height: 80vh;
     width: 100%;
 
     }

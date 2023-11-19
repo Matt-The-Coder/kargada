@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { useOutletContext } from 'react-router-dom';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
+import MapboxTraffic from '@mapbox/mapbox-gl-traffic'
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css';
 import axios from 'axios';
 
@@ -60,6 +61,7 @@ const HistoryTracking = () => {
     map.current.addControl(directions.current, 'top-left');
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
     map.current.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+    map.current.addControl(new MapboxTraffic(), 'bottom-right');
 
     // Add the Geolocate control to the map
     map.current.addControl(
@@ -132,7 +134,6 @@ const HistoryTracking = () => {
       setPositionData(data);
       marker.current.setLngLat([data?.longitude, data?.latitude]).addTo(map.current);
       marker.current.setRotation(data?.heading)
-      console.log(marker.current)
     };
     const errorPosition = (position) => {
       setPositionData(position.coords.longitude, position.coords.latitude);
@@ -161,9 +162,6 @@ const HistoryTracking = () => {
 
   return (
     <div className="HistoryTracking">
-      <center>
-        <h1>This is History Tracking</h1>
-      </center>
       <div ref={mapContainer} className="map-container" />
       <button onClick={setDirections}>Start Directions</button>
       <button onClick={toggleInstructions}>

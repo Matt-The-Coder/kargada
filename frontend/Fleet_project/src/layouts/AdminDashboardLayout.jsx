@@ -235,7 +235,7 @@ const AdminDashboardLayout = ()=>{
 
        </>)}
       
-        <div className="sidebar">
+        <div className="sidebar close">
     <a href="/admin/dashboard" className="logo">
       <img src="/assets/img/kargada-logo.png" alt="Company Logo"/>
       <div className="logo-name">
