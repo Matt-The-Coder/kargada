@@ -234,7 +234,7 @@ const AdminDashboardLayout = ()=>{
 
 
        </>)}
-      
+       <noscript>You need to enable JavaScript to run this app.</noscript>
         <div className="sidebar close">
     <a href="/admin/dashboard" className="logo">
       <img src="/assets/img/kargada-logo.png" alt="Company Logo"/>

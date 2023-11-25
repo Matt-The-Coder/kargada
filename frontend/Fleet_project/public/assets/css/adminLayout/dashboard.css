@@ -685,37 +685,3 @@ body{
 
 }
 
-.map-container {
-    height: 80vh;
-    width: 100%;
-
-    }
-
-.mapbox-directions-instructions .mapbox-directions-instructions-wrapper 
-.mapbox-directions-steps li .mapbox-directions-step-maneuver{
-    color: white;
-}
-.mapboxgl-ctrl.mapboxgl-ctrl-attrib.mapboxgl-compact {
-    visibility: hidden !important;
-  }
-.mapboxgl-ctrl-logo{
-    visibility: hidden !important;
-}
-.mapboxgl-ctrl.mapboxgl-ctrl-attrib{
-    visibility: hidden !important;
-}
-.mapboxgl-ctrl-geocoder input[type='text'] {
-    color: #000 !important;
-}
-button{
-    color: var(--dark-grey);
-}
-#markerTrack{
-    height: 30px;
-    width: 30px;
-    background-image: url('/assets/img/truck-vehicle.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition: ease-in 0.2s;
-}

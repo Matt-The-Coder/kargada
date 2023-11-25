@@ -5,8 +5,9 @@ import { useOutletContext } from 'react-router-dom';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 import MapboxTraffic from '@mapbox/mapbox-gl-traffic'
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css';
+import '/public/assets/css/adminLayout/historyTracking.css'
 import axios from 'axios';
-
+import Speedometer from '../../../components/tracking/speedometer';
 const HistoryTracking = () => {
   axios.defaults.withCredentials = true;
   const { isLoading, setIsLoading, mapStyle, setMapStyle } = useOutletContext();
@@ -170,6 +171,9 @@ const HistoryTracking = () => {
       <div id="markerTrack" ref={markerTrack}>
       </div>
       <div className="transportData">
+        <Speedometer speed={positionData?.speed}/>
+        <div className="vehicleData">
+        </div>
         <h3>Transportation Data</h3>
         {/* <p>Current Location: {formattedCurrentLocation}</p>
             <p>Destination: {address}</p>

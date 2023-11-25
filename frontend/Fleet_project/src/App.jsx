@@ -1,10 +1,7 @@
 import {Routes, Route} from 'react-router-dom'
 import AdminDashboardLayout from './layouts/AdminDashboardLayout'
-
-import CustomerLogin from './pages/customerPages/CustomerLogin'
-import CustomerRegister from './pages/customerPages/CustomerRegister'
 import CustomerDashboard from './pages/customerPages/CutomerDashboard'
-import {AdminDashboard, AdminLogin, Availability, AddBookings, BookingList, AddCustomer, CustomerManagement,
+import {AdminDashboard, Login, Availability, AddBookings, BookingList, AddCustomer, CustomerManagement,
    AddDriver, DriversList, LiveTracking, HistoryTracking,
  AddIncomeexpense, IeManagement, VehicleGroup, VehicleList, AddVehicle, ReportList, AddReport, AddUser, UserPanel,
    MaintenanceList, AddMaintenance, AddReminder, ReminderPanel, Settings, LandingPage} from './pages/adminPages/Components.js'
@@ -45,8 +42,7 @@ const App = () =>{
        
       </Route>
            <Route path='/' element={<LandingPage/>}/>
-          <Route path='/register' element={<CustomerRegister/>}/>
-          <Route path='/login' element={<AdminLogin/>}/>
+          <Route path='/login' element={<Login/>}/>
            <Route path='/*' element={<Notfound/>}/>
       </Routes>
     </>

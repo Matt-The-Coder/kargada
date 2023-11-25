@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../../../public/assets/css/adminLayout/landingpage.css'
+import '../../../public/assets/css/landingPage/landingpage.css'
 import React, { useEffect } from 'react';
 import AboutSection from './AboutSection';
 import HomeSection from './HomeSection';

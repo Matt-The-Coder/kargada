@@ -1,5 +1,5 @@
 import axios from 'axios';
-import '../../public/assets/css/adminLayout/login.css'
+import '../../public/assets/css/login/login.css'
 import { useEffect, useRef, useState} from 'react';
 import {Link, useNavigate, useOutletContext} from 'react-router-dom'
 import RiseLoader from "react-spinners/RiseLoader";
@@ -29,9 +29,7 @@ const AdminLogin = ()=>{
     const res = await axios.get(`${hostServer}/alreadyauthenticated`)
     if(res.data.auth){
         nav('/admin/dashboard')
-        console.log(res.data.auth)
-    }else{
-      console.log(res.data.auth)
+
     }
   }
   const handleSignUp = () => 
