@@ -30,7 +30,7 @@ button{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    transition: ease-in 0.2s;
+    transition: translate 0.3s ease-in;
 }
 .Speedometer {
     display: flex;

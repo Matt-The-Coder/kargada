@@ -60,7 +60,7 @@ body{
     z-index: 2000;
     overflow-x: hidden;
     scrollbar-width: none;
-    transition: all 0.3s ease;
+    transition: display 0.3s ease;
     display: none;
 }
 

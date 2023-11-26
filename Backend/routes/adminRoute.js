@@ -102,7 +102,7 @@ route.get('/register', async (req, res)=>
 // Calculate Emissions and Consumptions
 route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
 {
-  const {miles, weight} = req.query
+  const {miles, weightInKG} = req.query
   // Fuel Consumption
     const runMiles = miles
     const milesPerLiter = 21.58
@@ -111,8 +111,8 @@ route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
     const totalCostForAllDieselUsed = fuelConsumptionPerLiter * dieselFuelPricePerLiter
   // Carbon Emissions
     const truckEmissionFactorInGramsPerTonMiles = 161.8
-    const cargoWeight = weight
-    const totalAmountOfTonMiles = runMiles * cargoWeight;
+    const cargoWeightInTons = weightInKG / 1000
+    const totalAmountOfTonMiles = runMiles * cargoWeightInTons;
     const carbonEmissionsInGrams = totalAmountOfTonMiles * truckEmissionFactorInGramsPerTonMiles
     res.json({fuelConsumption: fuelConsumptionPerLiter, fuelCost:totalCostForAllDieselUsed, 
       carbonEmission: carbonEmissionsInGrams})
