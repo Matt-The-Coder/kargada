@@ -16,11 +16,11 @@ const AddMaintenance = ()=>{
                     </div>
                     <div className="maintenance-date">
                         <div className="start">
-                        <h4>Maintenance Start Date</h4>
+                        <h4> <span>Maintenance</span>  Start Date</h4>
                         <input type="date" name="" id="" />
                         </div>
                         <div className="end">
-                        <h4>Maintenance End Date</h4>
+                        <h4> <span>Maintenance</span>  End Date</h4>
                         <input type="date" name="" id="" />
                         </div>
                     </div>

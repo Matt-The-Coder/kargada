@@ -233,7 +233,7 @@
         font-size: 15px;
     }
     .vehicle-details .save{
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         width: 90%;
         text-align: end;
     }
@@ -285,18 +285,26 @@
     .vehicle-details .maintenance-date{
         display: flex;
         width: 90%;
+        column-gap: 5px;
+    }
+    .vehicle-details .maintenance-date h4 span{ 
+        display: none;
     }
     .vehicle-details .maintenance-date .end h4{
         padding-right: 5px;
     }
     .vehicle-details .maintenance-date .start input, .vehicle-details .maintenance-date .end input{
-        width: 90%;
+        width: 100%;
         border-radius: 10px;
         cursor: pointer; 
         padding: 5px 2px;
     }
+    .vehicle-details .maintenance-date .start {
+        width: 50%;
+    }
     .vehicle-details .maintenance-date .end{
         margin-left: auto;
+        width: 50%;
     }
     .vehicle-details .service-details{
         width: 90%;
@@ -321,20 +329,21 @@
         width: 100%;
     }
    .parts-qty{
-        width: 90%;
+        width: 100%;
         display: flex;
     }
     .parts-qty .parts-name{
-        width: 100%;
+        width: 50%;
     }
     .parts-qty .qty{
-        width: 90%;
+        width: 30%;
         margin-left: 5px;
     }
     .parts-qty .add{
-        margin-left: 40px;
         margin-top: auto;
         cursor: pointer;
+        margin-left: 4%;
+        width: 20%;
     }
     .parts-qty .qty select, .parts-qty .parts-name select{
         width: 100%;
