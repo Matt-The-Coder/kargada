@@ -3,7 +3,9 @@ import '/public/assets/css/adminLayout/maintenance.css'
 const AddMaintenance = ()=>{
     return(
         <div className="AddMaintenance">
-            <center><h1>Vehicle Maintenance</h1></center>
+            <div className="title">
+            <center><h5>Vehicle Maintenance</h5></center>
+            </div>
             <div className="vehicle-maintenance">
                 <div className="vehicle-details">
                     <div className="select-vehicle">
@@ -29,11 +31,11 @@ const AddMaintenance = ()=>{
                     <div className="cost-vendor">
                     <div className="cost">
                         <h4>Total Cost</h4>
-                        <input type="number" />
+                        <input type="number" placeholder='Enter Price'/>
                     </div>
                     <div className="vendor">
                         <h4>Vendor Name</h4>
-                        <input type="text" name="" id="" />
+                        <input type="text" name="" id="" placeholder='Vendor Name'/>
                     </div>
                     </div>
                     <div className="parts-qty">
@@ -50,7 +52,7 @@ const AddMaintenance = ()=>{
                             </select>
                         </div>
                         <div className="add">
-                            <button>Add</button>
+                        <i class='bx bxs-add-to-queue'></i>
                         </div>
                     </div>
                     <div className="maintenance-status">

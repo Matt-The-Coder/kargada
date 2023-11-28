@@ -7,7 +7,7 @@ import MapboxTraffic from '@mapbox/mapbox-gl-traffic'
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css';
 import '/public/assets/css/adminLayout/historyTracking.css'
 import axios from 'axios';
-import Speedometer from '../../../components/tracking/speedometer';
+import Speedometer from '../../../components/tracking/Speedometer';
 const HistoryTracking = () => {
   axios.defaults.withCredentials = true;
   const { isLoading, setIsLoading, mapStyle, setMapStyle } = useOutletContext();

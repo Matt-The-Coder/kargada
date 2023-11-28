@@ -2,8 +2,15 @@
     margin: 0;
     padding: 0;
 }
-input, select, option, button, textarea {
+.vehicle-maintenance input, .vehicle-maintenance select, .vehicle-maintenance
+ option, .vehicle-maintenance button, .vehicle-maintenance textarea {
     color: black !important;
+}
+.AddMaintenance .title {
+
+    background-color: var(--light);
+    padding: 10px;
+    border-radius: 20px;
 }
 /* Maintenance List */
 .maintenance-list{
@@ -44,6 +51,7 @@ input, select, option, button, textarea {
     align-items: center;
     background-color: var(--light);
     margin-bottom: 10px;
+    box-shadow: 2px 3px rgb(36, 36, 44);
 }
 .vehicle-details .select-vehicle {
     width: 40%;
@@ -52,7 +60,7 @@ input, select, option, button, textarea {
 .vehicle-details .select-vehicle select{
     width: 100%;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer; 
 }
 .vehicle-details .maintenance-date{
@@ -62,7 +70,7 @@ input, select, option, button, textarea {
 .vehicle-details .maintenance-date .start input, .vehicle-details .maintenance-date .end input{
     padding: 5px;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer; 
 }
 .vehicle-details .maintenance-date .end{
@@ -73,8 +81,8 @@ input, select, option, button, textarea {
 }
 .vehicle-details .service-details textarea{
     width: 100%;
-    border-radius: 5px;
-    font-size: 15px;
+    border-radius: 10px;
+    font-size: 18px;
 }
 .vehicle-details .cost-vendor{
     width: 40%;
@@ -85,7 +93,7 @@ input, select, option, button, textarea {
 }
 .vehicle-details .cost-vendor .vendor input, .vehicle-details .cost-vendor .cost input{
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer; 
 }
 .parts-qty{
@@ -95,6 +103,7 @@ input, select, option, button, textarea {
 .parts-qty .add{
     margin-left: auto;
     margin-top: auto;
+    cursor: pointer;
 }
 .parts-qty .qty{
     margin-left: auto;
@@ -102,7 +111,7 @@ input, select, option, button, textarea {
 .parts-qty .qty select, .parts-qty .parts-name select{
     width: 100%;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer; 
 }
 .maintenance-status{
@@ -111,7 +120,7 @@ input, select, option, button, textarea {
 .maintenance-status select{
     width: 100%;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer; 
 }
 .vehicle-details .save{
