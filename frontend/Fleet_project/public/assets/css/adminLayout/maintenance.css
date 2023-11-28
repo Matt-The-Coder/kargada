@@ -320,9 +320,16 @@
         cursor: pointer; 
         width: 100%;
     }
-    .parts-qty{
+   .parts-qty{
         width: 90%;
         display: flex;
+    }
+    .parts-qty .parts-name{
+        width: 100%;
+    }
+    .parts-qty .qty{
+        width: 90%;
+        margin-left: 5px;
     }
     .parts-qty .add{
         margin-left: 40px;
