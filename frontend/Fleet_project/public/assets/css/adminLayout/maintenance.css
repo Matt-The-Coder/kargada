@@ -131,3 +131,228 @@
     border-radius: 10px;
     cursor: pointer; 
 }
+/* Media Query */
+@media screen and (max-width: 768px) {
+    /* Add Maintenance */
+    .AddMaintenance h4{
+        font-size: 19px;
+    }
+    .AddMaintenance .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
+    .title h5 {
+        font-size: 25px;
+    }
+    .vehicle-details{
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 40px;
+        display: flex;
+        row-gap: 10px;
+        flex-direction: column;
+        align-items: baseline;
+        background-color: var(--light);
+        margin-bottom: 10px;
+        box-shadow: 1px 2px rgb(36, 36, 44);
+    }
+    .vehicle-details .select-vehicle {
+        width: 90%;
+        margin-top: 20px;
+        margin-left: 35px;
+    }
+    .vehicle-details .select-vehicle select{
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        cursor: pointer; 
+        font-size: 15px;
+    }
+    .vehicle-details .maintenance-date{
+        display: flex;
+        width: 90%;
+    }
+    .vehicle-details .maintenance-date .start input, .vehicle-details .maintenance-date .end input{
+        padding: 12px;
+        width: 100%;
+        border-radius: 10px;
+        font-size: 15px;
+        cursor: pointer; 
+    }
+    .vehicle-details .maintenance-date .end{
+        margin-left: 40px;
+    }
+    .vehicle-details .service-details{
+        width: 90%;
+    }
+    .vehicle-details .service-details textarea{
+        width: 100%;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+    .vehicle-details .cost-vendor{
+        width: 90%;
+        display: flex;
+    }
+    .vehicle-details .cost-vendor .vendor{
+        margin-left: 40px;
+    }
+    .vehicle-details .cost-vendor .vendor input, .vehicle-details .cost-vendor .cost input{
+        padding: 12px;
+        border-radius: 10px;
+        cursor: pointer; 
+        font-size: 15px;
+    }
+    .parts-qty{
+        width: 90%;
+        display: flex;
+    }
+    .parts-qty .add{
+        margin-left: 40px;
+    }
+    .parts-qty .qty{
+        margin-left: 40px;
+    }
+    .parts-qty .qty select, .parts-qty .parts-name select{
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        cursor: pointer; 
+        font-size: 15px;
+    }
+    .maintenance-status{
+        width: 90%;
+    }
+    .maintenance-status select{
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        cursor: pointer; 
+        font-size: 15px;
+    }
+    .vehicle-details .save{
+        margin-bottom: 5px;
+        width: 90%;
+        text-align: end;
+    }
+    .vehicle-details .save button{
+        padding: 12px;
+        font-size: 15px;
+    }
+ }
+
+@media screen and (max-width: 576px) {
+       /* Add Maintenance */
+       .AddMaintenance h4{
+        font-size: 16px;
+    }
+       .AddMaintenance .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
+    .title h5 {
+        font-size: 20px;
+    }
+       .vehicle-details{
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 20px;
+        display: flex;
+        row-gap: 10px;
+        flex-direction: column;
+        justify-content:first baseline;
+        align-items: baseline;
+        background-color: var(--light);
+        margin-bottom: 10px;
+        box-shadow: 2px 3px rgb(36, 36, 44);
+        
+    }
+    .vehicle-details .select-vehicle {
+        width: 90%;
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+    .vehicle-details .select-vehicle select{
+        width: 100%;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer; 
+    }
+    .vehicle-details .maintenance-date{
+        display: flex;
+        width: 90%;
+    }
+    .vehicle-details .maintenance-date .end h4{
+        padding-right: 5px;
+    }
+    .vehicle-details .maintenance-date .start input, .vehicle-details .maintenance-date .end input{
+        width: 90%;
+        border-radius: 10px;
+        cursor: pointer; 
+        padding: 5px 2px;
+    }
+    .vehicle-details .maintenance-date .end{
+        margin-left: auto;
+    }
+    .vehicle-details .service-details{
+        width: 90%;
+    }
+    .vehicle-details .service-details textarea{
+        width: 100%;
+        border-radius: 10px;
+        font-size: 15px;
+    }
+    .vehicle-details .cost-vendor{
+        display: flex;
+        column-gap: 7px;
+        width: 90%;
+    }
+    .vehicle-details .cost-vendor .vendor{
+        margin-left: auto;
+    }
+    .vehicle-details .cost-vendor .vendor input, .vehicle-details .cost-vendor .cost input{
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer; 
+        width: 100%;
+    }
+    .parts-qty{
+        width: 90%;
+        display: flex;
+    }
+    .parts-qty .add{
+        margin-left: 40px;
+        margin-top: auto;
+        cursor: pointer;
+    }
+    .parts-qty .qty select, .parts-qty .parts-name select{
+        width: 100%;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer; 
+    }
+    .maintenance-status{
+        width: 90%;
+    }
+    .maintenance-status select{
+        width: 100%;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer; 
+    }
+    .vehicle-details .save{
+        margin-bottom: 5px;
+        margin-left: auto;
+    }
+    .vehicle-details .save button{
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer; 
+        margin-right: 15px;
+        box-shadow: 1px 2px rgb(58, 57, 57);
+    }
+ }

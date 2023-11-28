@@ -364,7 +364,7 @@ body{
 
 .content main{
     width: 100%;
-    padding: 36px 24px;
+    padding: 10px 24px;
     max-height: calc(100vh - 56px);
 }
 

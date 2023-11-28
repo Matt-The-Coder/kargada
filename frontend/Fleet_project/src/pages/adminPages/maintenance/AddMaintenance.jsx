@@ -52,7 +52,7 @@ const AddMaintenance = ()=>{
                             </select>
                         </div>
                         <div className="add">
-                        <i class='bx bxs-add-to-queue'></i>
+                        <i className='bx bxs-add-to-queue'></i>
                         </div>
                     </div>
                     <div className="maintenance-status">
@@ -62,7 +62,7 @@ const AddMaintenance = ()=>{
                         </select>
                     </div>
                     <div className="save">
-                        <button>Save</button>
+                        <button>Create</button>
                     </div>
                 </div>
             </div>
