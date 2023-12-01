@@ -1,6 +1,37 @@
+import { useEffect, useRef, useState } from 'react'
 import '/public/assets/css/adminLayout/maintenance.css'
 
 const AddMaintenance = ()=>{
+        
+        const [addedParts, setAddedParts] = useState([]);
+
+        const addParts = () => {
+            const parts = (
+                <div className="parts-qty" key={addedParts.length}>
+                    <div className="parts-name">
+                        <h4>Parts Name</h4>
+                        <select name="parts" id="parts">
+                            <option value="parts1">Select Parts</option>
+                        </select>
+                    </div>
+                    <div className="qty">
+                        <h4>Quantity</h4>
+                        <select name="quantity" id="quantity">
+                            <option value="quantity">1</option>
+                        </select>
+                    </div>
+                    <div className="add">
+                        <i className='bx bxs-trash bx-tada' onClick={() => removeParts(addedParts.length)}></i>
+                    </div>
+                </div>
+            );
+            setAddedParts([...addedParts, parts]);
+        };
+    
+        const removeParts = (index) => {
+            const updatedParts = addedParts.filter((_, i) => i !== index);
+            setAddedParts(updatedParts);
+        };
     return(
         <div className="AddMaintenance">
             <div className="title">
@@ -52,9 +83,10 @@ const AddMaintenance = ()=>{
                             </select>
                         </div>
                         <div className="add">
-                        <i className='bx bxs-add-to-queue'></i>
+                        <i className='bx bxs-add-to-queue' onClick={addParts}></i>
                         </div>
                     </div>
+                    {addedParts}
                     <div className="maintenance-status">
                         <h4>Maintenance Status</h4>
                         <select name="maintenance-status" id="maintenance-status">

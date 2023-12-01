@@ -57,3 +57,29 @@ button{
     transform: translate(-50%, -100%) rotate(10deg);
     transition: transform 0.3s ease-in-out;
   }
+
+  /* Mobile */
+  .weatherDataMobile{
+    border: #000 1px solid;
+    border-radius: 10px;
+  }
+  .weatherDataMobile details{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 3% 5%;
+  }
+  .weatherDataMobile summary{
+    width: 100%;
+
+    padding: 6px;
+    margin-bottom: 7px;
+  }
+  .weatherDataMobile p{
+    border-radius: 2px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid black;
+    width: 100%;
+    padding: 2px 2%;
+    background-color: rgb(135, 140, 145);
+  }

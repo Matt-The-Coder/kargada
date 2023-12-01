@@ -5,6 +5,7 @@
 .vehicle-maintenance input, .vehicle-maintenance select, .vehicle-maintenance
  option, .vehicle-maintenance button, .vehicle-maintenance textarea {
     color: black !important;
+    background-color: white !important;
 }
 .AddMaintenance .title {
 
