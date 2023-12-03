@@ -17,6 +17,7 @@ const AdminDashboardLayout = ()=>{
   const [maintenanceDropdown, setMaintenanceDropdown] = useState(false)
   const [userDropdown, setUserDropdown] = useState(false)
   const [incomeExpenseDropdown, setIncomeExpenseDropdown] = useState(false)
+  const [fuel, setFuel] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isAuth, setIsAuth] = useState(false)
   const [user, setUser] = useState(null)
@@ -44,6 +45,7 @@ const AdminDashboardLayout = ()=>{
         break;
         case'maintenance': setMaintenanceDropdown(!maintenanceDropdown) 
         break;
+        case "fuel" : setFuel(!fuel)
         default:null;
       }
 
@@ -345,6 +347,28 @@ const AdminDashboardLayout = ()=>{
     </>
     )
       } 
+        <li id='fuel' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
+        <Link to="#">
+        <i class='bx bxs-gas-pump'></i>
+          Fuel
+        </Link>
+      </li>
+      {
+        fuel && (
+          <>
+          <li>
+            <Link to="/admin/fuel/manage"  id='subMenu'>
+            Fuel Management
+            </Link> 
+          </li >
+          <li >
+          <Link to="/admin/fuel/add" id='subMenu'>
+          Add Fuel
+          </Link> 
+        </li>
+        </>
+        )
+      }
       <li id='ie' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
           <i className="bx bx-cog" />

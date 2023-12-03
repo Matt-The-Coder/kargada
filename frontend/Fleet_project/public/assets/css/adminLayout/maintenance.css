@@ -32,6 +32,12 @@
     border-bottom: 1px solid rgb(49, 47, 47);
     padding: 10px;
 }
+.Maintenance .maintenance-search{
+    display: flex;
+    gap: 1%;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
 
 /* Add Maintenance */
 .vehicle-maintenance{
@@ -42,9 +48,8 @@
     align-items: center;
 }
 .vehicle-details{
-    width: 95%;
-    border: 2px solid black;
-    border-radius: 40px;
+    width: 100%;
+    border-radius: 10px;
     display: flex;
     row-gap: 10px;
     flex-direction: column;
@@ -52,7 +57,6 @@
     align-items: center;
     background-color: var(--light);
     margin-bottom: 10px;
-    box-shadow: 2px 3px rgb(36, 36, 44);
 }
 .vehicle-details .select-vehicle {
     width: 40%;
@@ -149,7 +153,6 @@
     }
     .vehicle-details{
         width: 100%;
-        border: 1px solid black;
         border-radius: 40px;
         display: flex;
         row-gap: 10px;
@@ -256,11 +259,10 @@
         padding: 5px;
     }
     .title h5 {
-        font-size: 20px;
+        font-size: 22px;
     }
        .vehicle-details{
         width: 100%;
-        border: 1px solid black;
         border-radius: 20px;
         display: flex;
         row-gap: 10px;
@@ -366,10 +368,23 @@
         margin-left: auto;
     }
     .vehicle-details .save button{
-        padding: 5px;
-        border-radius: 10px;
+        padding: 6px 12px;
+        border-radius: 5px;
         cursor: pointer; 
         margin-right: 15px;
-        box-shadow: 1px 2px rgb(58, 57, 57);
+        background-color: #1976D2 !important;
+        color: white !important;
+    }
+    /* Maintenance List */
+    .Maintenance .title h5{
+        font-size: 22px;
+    }
+    .Maintenance .maintenance-search p{
+        font-size: 15px;
+    }
+    .Maintenance .maintenance-search input{
+        border-radius: 5px;
+        width: 40%;
+        font-size: 15px;
     }
  }

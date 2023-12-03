@@ -4,7 +4,7 @@ import CustomerDashboard from './pages/customerPages/CutomerDashboard'
 import {AdminDashboard, Login, Availability, AddBookings, BookingList, AddCustomer, CustomerManagement,
    AddDriver, DriversList, LiveTracking, HistoryTracking,
  AddIncomeexpense, IeManagement, VehicleGroup, VehicleList, AddVehicle, ReportList, AddReport, AddUser, UserPanel,
-   MaintenanceList, AddMaintenance, AddReminder, ReminderPanel, Settings, LandingPage} from './pages/adminPages/Components.js'
+   MaintenanceList, AddMaintenance, AddReminder, ReminderPanel, Settings, LandingPage, AddFuel, FuelManagement} from './pages/adminPages/Components.js'
 import Notfound from './pages/Notfound'
 
 const App = () =>{
@@ -39,7 +39,8 @@ const App = () =>{
         <Route path='/admin/vehicle/add' element={<AddVehicle/>}/>
         <Route path='/admin/vehicle/list' element={<VehicleList/>}/>
         <Route path='/admin/vehicle/group' element={<VehicleGroup/>}/>
-       
+        <Route path='/admin/fuel/manage' element={<FuelManagement/>}/>
+        <Route path='/admin/fuel/add' element={<AddFuel/>}/>
       </Route>
            <Route path='/' element={<LandingPage/>}/>
           <Route path='/login' element={<Login/>}/>

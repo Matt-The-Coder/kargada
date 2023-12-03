@@ -24,3 +24,5 @@ export { default as Availability } from './Availability';
 export { default as AdminDashboard } from './AdminDashboard';
 export { default as Login } from '../Login';
 export {default as LandingPage} from '../landingPages/LandingPage';
+export {default as FuelManagement} from './fuel/FuelManagement'
+export {default as AddFuel} from './fuel/AddFuel'

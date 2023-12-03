@@ -3,7 +3,14 @@ import '/public/assets/css/adminLayout/maintenance.css'
 const MaintenanceList = ()=>{
     return(
         <div className="Maintenance">
-            <center><h1>List of Maintenance</h1></center>
+            <div className="title">
+            <center><h5>List of Maintenance</h5></center>
+            </div>
+
+            <div className="maintenance-search">
+                <p>Search: </p>
+                <input type="text" id='search' />
+            </div>
             <div className="maintenance-list">
             <table className='maintenance-table'>
                     <tr>

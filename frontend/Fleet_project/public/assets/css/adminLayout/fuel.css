@@ -1,0 +1,174 @@
+/* Add FUEL */
+.fuel-details {
+    height: 70vh;
+    padding: 30px;
+    box-shadow: 1px 2px #1976d28f;
+    border-radius: 10px;
+    background-color: var(--light);
+}
+.fuel-details select, .fuel-details input {
+    color: black !important;
+}
+
+.fuel-details .first-row {
+    width: 100%;
+    display: flex;
+    column-gap: 1%;
+}
+
+.fuel-details .first-row .vehicle {
+    width: 24%;
+}
+
+.fuel-details .first-row .vehicle select {
+    width: 100%;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fuel-details .first-row .driver {
+    width: 24%;
+}
+
+.fuel-details .first-row .driver select {
+    width: 100%;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fuel-details .first-row .fill-date {
+    width: 24%;
+}
+
+.fuel-details .first-row .fill-date input {
+    width: 100%;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fuel-details .first-row .quantity {
+    width: 24%;
+}
+
+.fuel-details .first-row .quantity input {
+    width: 100%;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fuel-details .second-row {
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    column-gap: 1%;
+}
+
+.fuel-details .second-row .odometer-reading {
+    width: 24%;
+}
+
+.fuel-details .second-row .odometer-reading input {
+    width: 100%;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fuel-details .second-row .amount {
+    width: 24%;
+}
+
+.fuel-details .second-row .amount input {
+    width: 100%;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fuel-details .second-row .comment {
+    width: 49%;
+}
+
+.fuel-details .second-row .comment input {
+    width: 100%;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fuel-details .add-button {
+    width: 100%;
+    display: flex;
+    margin-top: 10%;
+    padding-right: 1%;
+    justify-content: flex-end;
+}
+.fuel-details .add-button button{
+    padding: 6px 12px;
+    background-color: #1976D2;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@media screen and (max-width: 768px){
+        /* ADD FUEL */
+        :is(.fuel-details .first-row, .fuel-details .second-row) {
+            display: flex;
+            flex-direction: column;
+        }
+        :is(.fuel-details .first-row, .fuel-details .second-row) :is(.vehicle, .driver, .fill-date, .quantity, .odometer-reading, .amount, .comment) {
+            width: 100% !important;
+            margin-bottom: 2%;
+        }
+    
+    
+        .fuel-details {
+            height: auto;
+        }
+        :is(.fuel-details .first-row, .fuel-details .second-row) :is(h4){
+            font-size: 19px;
+        }
+        :is(.fuel-details .first-row, .fuel-details .second-row) :is(select, input){
+            padding: 12px !important;
+            font-size: 15px;
+        }
+        .fuel-details .title h5{
+            font-size: 25px;
+        }
+        .fuel-details .add-button {
+            margin-top: 5%;
+        }
+        .fuel-details .add-button button{
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+}
+@media screen and (max-width: 576px){
+    /* ADD FUEL */
+    :is(.fuel-details .first-row, .fuel-details .second-row) {
+        display: flex;
+        flex-direction: column;
+    }
+    :is(.fuel-details .first-row, .fuel-details .second-row) :is(.vehicle, .driver, .fill-date, .quantity, .odometer-reading, .amount, .comment) {
+        width: 100% !important;
+        margin-bottom: 2%;
+    }
+    :is(.fuel-details .first-row, .fuel-details .second-row) :is(select, input){
+        padding: 6px 12px !important;
+    }
+
+    .fuel-details {
+        height: auto;
+    }
+    .fuel-details .add-button {
+        margin-top: 5%;
+    }
+    .fuel-details .add-button button{
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
