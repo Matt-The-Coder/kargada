@@ -34,15 +34,12 @@ const AddMaintenance = ()=>{
         };
     return(
         <div className="AddMaintenance">
-            <div className="title">
-            <center><h5>Vehicle Maintenance</h5></center>
-            </div>
             <div className="vehicle-maintenance">
                 <div className="vehicle-details">
                     <div className="select-vehicle">
                     <h4>Select Vehicle</h4>
                     <select name="select-vehicle" id="select-vehicle">
-                        <option value="Truck">Truck 1</option>
+                        <option value="Truck">Select Vehicle</option>
                     </select>
                     </div>
                     <div className="maintenance-date">
@@ -66,7 +63,7 @@ const AddMaintenance = ()=>{
                     </div>
                     <div className="vendor">
                         <h4>Vendor Name</h4>
-                        <input type="text" name="" id="" placeholder='Vendor Name'/>
+                        <input type="text" name="" id="" placeholder='Enter Name'/>
                     </div>
                     </div>
                     <div className="parts-qty">
@@ -90,7 +87,7 @@ const AddMaintenance = ()=>{
                     <div className="maintenance-status">
                         <h4>Maintenance Status</h4>
                         <select name="maintenance-status" id="maintenance-status">
-                            <option value="1">Choose Maintenance Status</option>
+                            <option value="1">Choose Status</option>
                         </select>
                     </div>
                     <div className="save">

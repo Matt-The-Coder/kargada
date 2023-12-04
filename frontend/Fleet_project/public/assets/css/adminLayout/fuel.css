@@ -1,4 +1,7 @@
 /* Add FUEL */
+.fuel-details h4{
+    font-size: 18px;
+}
 .fuel-details {
     height: 70vh;
     padding: 30px;
@@ -8,12 +11,14 @@
 }
 .fuel-details select, .fuel-details input {
     color: black !important;
+    background-color: white !important;
 }
 
 .fuel-details .first-row {
     width: 100%;
     display: flex;
     column-gap: 1%;
+    margin-bottom: 20px;
 }
 
 .fuel-details .first-row .vehicle {
@@ -114,6 +119,37 @@
     border-radius: 5px;
     cursor: pointer;
 }
+/* Fuel Management */
+.FuelManagement{
+    height: 70vh;
+    padding: 30px;
+    background-color: var(--light);
+}
+.fuel-search{
+    width: 100%;
+    display: flex;
+    column-gap: 1%;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+.fuel-search input{
+    color: black;
+    background-color: white;
+}
+.fuel-list{
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+.fuel-list .fuel-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+:is(.fuel-list .fuel-table tr) :is(th, td){
+    border-bottom: 2px #4e4a4a solid;
+    text-align: left;
+    padding: 10px 20px;
+}
 @media screen and (max-width: 768px){
         /* ADD FUEL */
         :is(.fuel-details .first-row, .fuel-details .second-row) {
@@ -160,7 +196,9 @@
     :is(.fuel-details .first-row, .fuel-details .second-row) :is(select, input){
         padding: 6px 12px !important;
     }
-
+    :is(.fuel-details .first-row, .fuel-details .second-row) :is(h4){
+        font-size: 16px;
+    }
     .fuel-details {
         height: auto;
     }

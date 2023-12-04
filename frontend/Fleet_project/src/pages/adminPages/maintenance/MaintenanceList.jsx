@@ -3,9 +3,6 @@ import '/public/assets/css/adminLayout/maintenance.css'
 const MaintenanceList = ()=>{
     return(
         <div className="Maintenance">
-            <div className="title">
-            <center><h5>List of Maintenance</h5></center>
-            </div>
 
             <div className="maintenance-search">
                 <p>Search: </p>

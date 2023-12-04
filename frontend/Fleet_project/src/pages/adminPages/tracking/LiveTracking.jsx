@@ -4,217 +4,218 @@ import axios from 'axios';
 import Geocode from 'react-geocode';
 import { useOutletContext } from 'react-router-dom';
 const LiveTracking = () => {
-  const {isLoading, setIsLoading} = useOutletContext()
-  const googleMapsAPI = import.meta.env.VITE_GOOGLE_MAPS_API
-  Geocode.setApiKey(googleMapsAPI)
-  const [address, setAddress] = useState('');
-  const [map, setMap] = useState(null);
-  const [directionsService, setDirectionsService] = useState(null);
-  const [directionsRenderer, setDirectionsRenderer] = useState(null);
-  const [distance, setDistance] = useState(null);
-  const [currentLocation, setCurrentLocation] = useState(null);
-  const [formattedCurrentLocation, setFormattedCurrentLocation] = useState('')
-  const [carbonEmissions, setCarbonEmissions] = useState(null);
-  const [driveTime, setDriveTime] = useState(null);
-  const [weatherCondition, setWeatherConditon] = useState(null)
-  const [weatherAlerts, setWeatherAlerts] = useState(null)
-  const [weatherIcon, setWeatherIcon] = useState(null)
-  const [positionData, setPositionData] = useState(null)
-  const parentElement = useRef(null)
-  useEffect(() => {
-    setIsLoading(true)
-    // Load the Google Maps JavaScript API script
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsAPI}`;
-    script.onload = () => {
-      initMap();
-      setTimeout(()=>{setIsLoading(false)}, 2000)
-    };
-    document.body.appendChild(script);
-    return () => {
-      // Clean up the script tag
-      document.body.removeChild(script);
-    };
-  }, []);
+  // const {isLoading, setIsLoading} = useOutletContext()
+  // const googleMapsAPI = import.meta.env.VITE_GOOGLE_MAPS_API
+  // Geocode.setApiKey(googleMapsAPI)
+  // const [address, setAddress] = useState('');
+  // const [map, setMap] = useState(null);
+  // const [directionsService, setDirectionsService] = useState(null);
+  // const [directionsRenderer, setDirectionsRenderer] = useState(null);
+  // const [distance, setDistance] = useState(null);
+  // const [currentLocation, setCurrentLocation] = useState(null);
+  // const [formattedCurrentLocation, setFormattedCurrentLocation] = useState('')
+  // const [carbonEmissions, setCarbonEmissions] = useState(null);
+  // const [driveTime, setDriveTime] = useState(null);
+  // const [weatherCondition, setWeatherConditon] = useState(null)
+  // const [weatherAlerts, setWeatherAlerts] = useState(null)
+  // const [weatherIcon, setWeatherIcon] = useState(null)
+  // const [positionData, setPositionData] = useState(null)
+  // const parentElement = useRef(null)
+  // useEffect(() => {
+  //   setIsLoading(true)
+  //   // Load the Google Maps JavaScript API script
+  //   const script = document.createElement('script');
+  //   script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsAPI}`;
+  //   script.onload = () => {
+  //     initMap();
+  //     setTimeout(()=>{setIsLoading(false)}, 2000)
+  //   };
+  //   document.body.appendChild(script);
+  //   return () => {
+  //     // Clean up the script tag
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-
-
-    // Calculate carbon emissions when distance changes
-    if (distance) {
-      calculateCarbonEmissions();
-      calculteWeatherCondition();
-    }
-
-  }, [distance]);
-
-  const initMap = () => {
-
-    // Initialize the map
-    const mapInstance = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 0, lng: 0 },
-      zoom: 10
-    });
-    setMap(mapInstance);
-
-    // Initialize the DirectionsService and DirectionsRenderer
-    const directionsServiceInstance = new window.google.maps.DirectionsService();
-    const directionsRendererInstance = new window.google.maps.DirectionsRenderer({
-      map: mapInstance
-    });
-    setDirectionsService(directionsServiceInstance);
-    setDirectionsRenderer(directionsRendererInstance);
-
-    // Get the current location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
-        setCurrentLocation({ lat: latitude, lng: longitude });
-        mapInstance.setCenter({ lat: latitude, lng: longitude });
-      });
-    }
-  };
-
-  const calculateDistance = (origin, destination) => {
-    // Calculate the distance between two points
-    const service = new window.google.maps.DistanceMatrixService();
-    service.getDistanceMatrix(
-      {
-        origins: [origin],
-        destinations: [destination],
-        travelMode: 'DRIVING'
-      },
-      (response, status) => {
-        if (status === 'OK') {
-          const { distance, duration } = response.rows[0].elements[0];
-          setDistance(distance.text);
-          setDriveTime(duration.text);
-        }
-      }
-    );
-  };
-  const calculteWeatherCondition = async () => {
-    const apiToken = import.meta.env.VITE_WEATHER_API;
-    try {
-      setIsLoading(true)
-      const response = await axios.get(`https://api.weatherbit.io/v2.0/current?lat=${currentLocation.lat}&lon=${currentLocation.lng}&key=${apiToken}`);
-      const result = response.data.data[0]
-      const alertResponse = await axios.get(`https://api.weatherbit.io/v2.0/alerts?lat=${currentLocation.lat}&lon=${currentLocation.lng}&key=${apiToken}`);
-      const alertResult = alertResponse.data
-      setWeatherConditon(result)
-      const weatherIcon = `https://www.weatherbit.io/static/img/icons/${result.weather.icon}.png`
-      setWeatherIcon(weatherIcon)
-      console.log('hello')
-      setWeatherAlerts({
-        alertTitle: alertResult.alerts[0]?.title,
-        alertStartTime: alertResult.alerts[0]?.onset_local,
-        alertEndTime: alertResult.alerts[0]?.ends_local
-      })
-      setIsLoading(false)
-    } catch (error) {
-
-    }
-  }
-  const calculateCarbonEmissions = async () => {
-    // Calculate carbon emissions using the Carbon Interface API
-    const apiToken = `Bearer ${import.meta.env.VITE_CARBON_EMISSIONS_API}`;
-    const postData = {
-      type: 'shipping',
-      weight_value: 200,
-      weight_unit: 'kg',
-      distance_value: parseFloat(distance),
-      distance_unit: 'km',
-      transport_method: 'truck'
-    };
-    const apiUrl = 'https://www.carboninterface.com/api/v1/estimates';
-    const headers = {
-      Authorization: apiToken,
-      'Content-Type': 'application/json'
-    };
-
-    try {
-      const response = await axios.post(apiUrl, postData, { headers });
-      const carbonEmissionsResult = response.data;
-      setCarbonEmissions(carbonEmissionsResult);
-    } catch (error) {
-      console.error(error);
-      setCarbonEmissions({ message: 'Error in fetching' });
-    }
-  };
-
-  const handleOrderReceived = () => {
-    const apiToken = googleMapsAPI;
-    const geocodeEndpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${currentLocation.lat},${currentLocation.lng}&key=${apiToken}`;
-    // Calculate and display the directions
-    const destination = 'Manila, Philippines'; // Update the destination here
-    directionsService.route(
-      {
-        origin: currentLocation,
-        destination: destination,
-        travelMode: 'DRIVING'
-      },
-      (result, status) => {
-        if (status === 'OK') {
-          directionsRenderer.setDirections(result);
-          calculateDistance(currentLocation, destination);
-
-          // Reverse geocode the destination coordinates to get the address
-          Geocode.fromAddress(destination)
-            .then(response => {
-              const addressComponent = response.results[0].formatted_address;
-              setAddress(addressComponent);
-            })
-            .catch(error => {
-              console.error(error);
-            });
-
-          fetch(geocodeEndpoint)
-            .then(response => response.json())
-            .then(data => {
-              if (data.status === 'OK') {
-                const results = data.results;
-                if (results.length > 0) {
-                  const formattedAddress = results[0].formatted_address;
-                  setFormattedCurrentLocation(formattedAddress)
-                } else {
-                  setFormattedCurrentLocation('Location not found')
-                }
-              } else {
-                console.log('Geocode request failed. Status:', data.status);
-              }
-            })
-            .catch(error => {
-              console.error('Error occurred during geocoding:', error);
-            });
+  // useEffect(() => {
 
 
-        }
-      }
-    );
-    const watchPositionOptions = {
-      enableHighAccuracy: true, // Enable high accuracy mode if available
-      maximumAge: 0, // Force the latest position
-      timeout: 5000 // Set a timeout value
-    };
+  //   // Calculate carbon emissions when distance changes
+  //   if (distance) {
+  //     calculateCarbonEmissions();
+  //     calculteWeatherCondition();
+  //   }
 
-    const watchId = navigator.geolocation.watchPosition(
-      position => {
-        const { } = position.coords
-        setPositionData(position.coords)
-      },
-      error => {
-        console.error('Error getting location:', error);
-      },
-      watchPositionOptions
-    );
+  // }, [distance]);
 
-    // To stop watching the position updates, you can call:
-    // navigator.geolocation.clearWatch(watchId);
-  };
+  // const initMap = () => {
+
+  //   // Initialize the map
+  //   const mapInstance = new window.google.maps.Map(document.getElementById('map'), {
+  //     center: { lat: 0, lng: 0 },
+  //     zoom: 10
+  //   });
+  //   setMap(mapInstance);
+
+  //   // Initialize the DirectionsService and DirectionsRenderer
+  //   const directionsServiceInstance = new window.google.maps.DirectionsService();
+  //   const directionsRendererInstance = new window.google.maps.DirectionsRenderer({
+  //     map: mapInstance
+  //   });
+  //   setDirectionsService(directionsServiceInstance);
+  //   setDirectionsRenderer(directionsRendererInstance);
+
+  //   // Get the current location
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(position => {
+  //       const { latitude, longitude } = position.coords;
+  //       setCurrentLocation({ lat: latitude, lng: longitude });
+  //       mapInstance.setCenter({ lat: latitude, lng: longitude });
+  //     });
+  //   }
+  // };
+
+  // const calculateDistance = (origin, destination) => {
+  //   // Calculate the distance between two points
+  //   const service = new window.google.maps.DistanceMatrixService();
+  //   service.getDistanceMatrix(
+  //     {
+  //       origins: [origin],
+  //       destinations: [destination],
+  //       travelMode: 'DRIVING'
+  //     },
+  //     (response, status) => {
+  //       if (status === 'OK') {
+  //         const { distance, duration } = response.rows[0].elements[0];
+  //         setDistance(distance.text);
+  //         setDriveTime(duration.text);
+  //       }
+  //     }
+  //   );
+  // };
+  // const calculteWeatherCondition = async () => {
+  //   const apiToken = import.meta.env.VITE_WEATHER_API;
+  //   try {
+  //     setIsLoading(true)
+  //     const response = await axios.get(`https://api.weatherbit.io/v2.0/current?lat=${currentLocation.lat}&lon=${currentLocation.lng}&key=${apiToken}`);
+  //     const result = response.data.data[0]
+  //     const alertResponse = await axios.get(`https://api.weatherbit.io/v2.0/alerts?lat=${currentLocation.lat}&lon=${currentLocation.lng}&key=${apiToken}`);
+  //     const alertResult = alertResponse.data
+  //     setWeatherConditon(result)
+  //     const weatherIcon = `https://www.weatherbit.io/static/img/icons/${result.weather.icon}.png`
+  //     setWeatherIcon(weatherIcon)
+  //     console.log('hello')
+  //     setWeatherAlerts({
+  //       alertTitle: alertResult.alerts[0]?.title,
+  //       alertStartTime: alertResult.alerts[0]?.onset_local,
+  //       alertEndTime: alertResult.alerts[0]?.ends_local
+  //     })
+  //     setIsLoading(false)
+  //   } catch (error) {
+
+  //   }
+  // }
+  // const calculateCarbonEmissions = async () => {
+  //   // Calculate carbon emissions using the Carbon Interface API
+  //   const apiToken = `Bearer ${import.meta.env.VITE_CARBON_EMISSIONS_API}`;
+  //   const postData = {
+  //     type: 'shipping',
+  //     weight_value: 200,
+  //     weight_unit: 'kg',
+  //     distance_value: parseFloat(distance),
+  //     distance_unit: 'km',
+  //     transport_method: 'truck'
+  //   };
+  //   const apiUrl = 'https://www.carboninterface.com/api/v1/estimates';
+  //   const headers = {
+  //     Authorization: apiToken,
+  //     'Content-Type': 'application/json'
+  //   };
+
+  //   try {
+  //     const response = await axios.post(apiUrl, postData, { headers });
+  //     const carbonEmissionsResult = response.data;
+  //     setCarbonEmissions(carbonEmissionsResult);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setCarbonEmissions({ message: 'Error in fetching' });
+  //   }
+  // };
+
+  // const handleOrderReceived = () => {
+  //   const apiToken = googleMapsAPI;
+  //   const geocodeEndpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${currentLocation.lat},${currentLocation.lng}&key=${apiToken}`;
+  //   // Calculate and display the directions
+  //   const destination = 'Manila, Philippines'; // Update the destination here
+  //   directionsService.route(
+  //     {
+  //       origin: currentLocation,
+  //       destination: destination,
+  //       travelMode: 'DRIVING'
+  //     },
+  //     (result, status) => {
+  //       if (status === 'OK') {
+  //         directionsRenderer.setDirections(result);
+  //         calculateDistance(currentLocation, destination);
+
+  //         // Reverse geocode the destination coordinates to get the address
+  //         Geocode.fromAddress(destination)
+  //           .then(response => {
+  //             const addressComponent = response.results[0].formatted_address;
+  //             setAddress(addressComponent);
+  //           })
+  //           .catch(error => {
+  //             console.error(error);
+  //           });
+
+  //         fetch(geocodeEndpoint)
+  //           .then(response => response.json())
+  //           .then(data => {
+  //             if (data.status === 'OK') {
+  //               const results = data.results;
+  //               if (results.length > 0) {
+  //                 const formattedAddress = results[0].formatted_address;
+  //                 setFormattedCurrentLocation(formattedAddress)
+  //               } else {
+  //                 setFormattedCurrentLocation('Location not found')
+  //               }
+  //             } else {
+  //               console.log('Geocode request failed. Status:', data.status);
+  //             }
+  //           })
+  //           .catch(error => {
+  //             console.error('Error occurred during geocoding:', error);
+  //           });
+
+
+  //       }
+  //     }
+  //   );
+  //   const watchPositionOptions = {
+  //     enableHighAccuracy: true, // Enable high accuracy mode if available
+  //     maximumAge: 0, // Force the latest position
+  //     timeout: 5000 // Set a timeout value
+  //   };
+
+  //   const watchId = navigator.geolocation.watchPosition(
+  //     position => {
+  //       const { } = position.coords
+  //       setPositionData(position.coords)
+  //     },
+  //     error => {
+  //       console.error('Error getting location:', error);
+  //     },
+  //     watchPositionOptions
+  //   );
+
+  //   // To stop watching the position updates, you can call:
+  //   // navigator.geolocation.clearWatch(watchId);
+  // };
 
   return (
-    <div className="LiveTracking" ref={parentElement}>
-      <div id="weatherapi-weather-widget-1"></div><script type='text/javascript' src='https://www.weatherapi.com/weather/widget.ashx?loc=1856592&wid=1&tu=2&div=weatherapi-weather-widget-1' async></script><noscript><a href="https://www.weatherapi.com/weather/q/pag-asa-1856592" alt="Hour by hour Pag-Asa weather">10 day hour by hour Pag-Asa weather</a></noscript>
+    <div className="LiveTracking">
+      <h1>Hello</h1>
+      {/* <div id="weatherapi-weather-widget-1"></div><script type='text/javascript' src='https://www.weatherapi.com/weather/widget.ashx?loc=1856592&wid=1&tu=2&div=weatherapi-weather-widget-1' async></script><noscript><a href="https://www.weatherapi.com/weather/q/pag-asa-1856592" alt="Hour by hour Pag-Asa weather">10 day hour by hour Pag-Asa weather</a></noscript>
       <div id="map" style={{ height: '400px' }}></div>
       {currentLocation && (
         <div className='map'>
@@ -333,7 +334,7 @@ const LiveTracking = () => {
 
           <button onClick={handleOrderReceived}>Start the directions!</button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

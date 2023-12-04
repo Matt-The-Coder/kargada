@@ -400,9 +400,9 @@ const AdminDashboardLayout = ()=>{
       {trackingDropdown && (
         <>
       <li >
-        <Link to="/admin/tracking/history" id='subMenu'>
+        <a href="/admin/tracking/history" id='subMenu'>
         History Tracking
-        </Link> 
+        </a> 
       </li>
       <li >
       <Link to="/admin/tracking/live" id='subMenu'>
