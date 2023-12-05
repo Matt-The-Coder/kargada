@@ -281,7 +281,7 @@ const AdminDashboardLayout = ()=>{
       } 
       <li id='drivers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i className='bx bxs-id-card'></i>
+        <i class='bx bx-id-card'></i>
           Drivers
         </Link>
       </li>
@@ -349,7 +349,7 @@ const AdminDashboardLayout = ()=>{
       } 
         <li id='fuel' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i class='bx bxs-gas-pump'></i>
+        <i class='bx bx-gas-pump'></i>
           Fuel
         </Link>
       </li>
@@ -414,7 +414,7 @@ const AdminDashboardLayout = ()=>{
       } 
       <li id='reminders' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i className='bx bxs-bell'></i>
+        <i class='bx bx-bell'></i>
           Reminders
         </Link>
       </li>
@@ -462,7 +462,7 @@ const AdminDashboardLayout = ()=>{
       } 
       <li id='users' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
-        <i className='bx bxs-group'></i>
+        <i class='bx bx-user'></i>
           Users
         </Link>
       </li>

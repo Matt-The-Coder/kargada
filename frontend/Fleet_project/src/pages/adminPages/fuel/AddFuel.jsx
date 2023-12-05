@@ -3,8 +3,6 @@ import '/public/assets/css/adminLayout/fuel.css'
 const AddFuel = ()=>{
     return(
         <div className="AddFuel">
-            <div className="title">
-            </div>
             <div className="fuel-details">
                 <div className="first-row">
                     <div className="vehicle">

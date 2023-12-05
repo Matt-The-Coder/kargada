@@ -15,7 +15,7 @@
     background-color: var(--light);
 }
 .maintenance-list{
-    overflow-y:scroll;
+    overflow:auto;
 }
 .maintenance-table{
     width: 100%;
@@ -40,6 +40,7 @@
 .Maintenance .maintenance-search input{
     background-color: white;
     color: black;
+    border-radius: 5px;
 }
 
 /* Add Maintenance */
@@ -295,7 +296,6 @@
         display: flex;
         row-gap: 10px;
         flex-direction: column;
-        justify-content:first baseline;
         align-items: baseline;
         background-color: var(--light);
         margin-bottom: 10px;
@@ -303,9 +303,9 @@
         
     }
     .vehicle-details .select-vehicle {
-        width: 90%;
+        width:100%;
         margin-top: 10px;
-        margin-left: 15px;
+        margin: 0;
     }
     .vehicle-details .select-vehicle select{
         width: 100%;
@@ -315,7 +315,7 @@
     }
     .vehicle-details .maintenance-date{
         display: flex;
-        width: 90%;
+        width:100%;
         column-gap: 5px;
     }
     .vehicle-details .maintenance-date h4 span{ 
@@ -338,7 +338,7 @@
         width: 50%;
     }
     .vehicle-details .service-details{
-        width: 90%;
+        width:100%;
     }
     .vehicle-details .service-details textarea{
         width: 100%;
@@ -348,7 +348,10 @@
     .vehicle-details .cost-vendor{
         display: flex;
         column-gap: 2%;
-        width: 90%;
+        width:100%;
+    }
+    .vehicle-details .cost-vendor span{
+        display: none;
     }
     .vehicle-details .cost-vendor .vendor, .vehicle-details .cost-vendor .cost{
         width: 49%;
@@ -364,9 +367,10 @@
    .parts-qty{
         width: 100%;
         display: flex;
+        column-gap: 2%;
     }
     .parts-qty .parts-name{
-        width: 50%;
+        width: 52%;
     }
     .parts-qty .qty{
         width: 30%;
@@ -374,8 +378,9 @@
     .parts-qty .add{
         margin-top: auto;
         cursor: pointer;
-        margin-left: 4%;
+        margin-left: 0;
         width: 20%;
+        text-align: end;
     }
     .parts-qty .qty select, .parts-qty .parts-name select{
         width: 100%;
@@ -384,7 +389,7 @@
         cursor: pointer; 
     }
     .maintenance-status{
-        width: 90%;
+        width:100%;
     }
     .maintenance-status select{
         width: 100%;
@@ -406,12 +411,19 @@
     .Maintenance .title h5{
         font-size: 22px;
     }
+    .Maintenance .maintenance-search{
+        width: 100%;
+        column-gap: 3%;
+    }
     .Maintenance .maintenance-search p{
-        font-size: 15px;
+        font-size: 16px;
     }
     .Maintenance .maintenance-search input{
         border-radius: 5px;
-        width: 40%;
-        font-size: 15px;
+        font-size: 16px;
+        width: 60%;
+    }
+    :is(.maintenance-list, .maintenance-table) :is(tr th, tr td){
+        padding: 6px 12px;
     }
  }

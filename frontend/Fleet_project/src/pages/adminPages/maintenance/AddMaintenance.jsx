@@ -62,7 +62,7 @@ const AddMaintenance = ()=>{
                         <input type="number" placeholder='Enter Price'/>
                     </div>
                     <div className="vendor">
-                        <h4>Vendor Name</h4>
+                        <h4>Vendor <span>Name</span> </h4>
                         <input type="text" name="" id="" placeholder='Enter Name'/>
                     </div>
                     </div>

@@ -1,10 +1,18 @@
 :is(.HistoryTracking) :is(button) {
-  background-color: #1976D2;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(26, 21, 21);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.HistoryTracking{
+  width: 100%;
+  padding: 30px;
+  background-color: var(--light);
+  border-radius: 20px;
 }
 .map-container {
-    height: 50vh;
-    width: 96vw;
+    height: 60vh;
+    width: 100%;
     border: #1976D2 solid 1px;
     border-radius: 20px;
     }
@@ -87,4 +95,12 @@ button{
     width: 100%;
     padding: 2px 2%;
     background-color: rgb(135, 140, 145);
+  }
+  @media screen and (max-width: 768px) {
+    
+  }
+  @media screen and (max-width: 576px) {
+    .HistoryTracking{
+      padding: 10px;
+    }
   }

@@ -80,19 +80,19 @@ const HistoryTracking = () => {
     // Add the MapboxDirections control to the map
     map.current.addControl(directions.current, 'top-left');
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
-    map.current.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+    map.current.addControl(new mapboxgl.FullscreenControl(), 'top-left');
     map.current.addControl(new MapboxTraffic(), 'bottom-right');
 
     // Add the Geolocate control to the map
-    map.current.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true,
-        },
-        trackUserLocation: true,
-        showUserHeading: true,
-      })
-    );
+    // map.current.addControl(
+    //   new mapboxgl.GeolocateControl({
+    //     positionOptions: {
+    //       enableHighAccuracy: true,
+    //     },
+    //     trackUserLocation: true,
+    //     showUserHeading: true,
+    //   })
+    // );
 
 
     // map.current.on('click', (e) => {

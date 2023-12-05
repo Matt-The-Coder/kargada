@@ -12,11 +12,11 @@ const FuelManagement = ()=>{
             <table className='fuel-table'>
                     <tr>
                     <th>S.No</th>
-                    <th>Fuel Fill Date</th>
+                    <th>Fill Date</th>
                     <th>Vehicle</th>
                     <th>Quantity</th>
-                    <th>Fuel Total Price</th>
-                    <th>Fuel Filled By</th>
+                    <th>Total Price</th>
+                    <th>Filled By</th>
                     <th>Odometer Reading</th>
                     <th>Remarks</th>
                     <th>Action</th>

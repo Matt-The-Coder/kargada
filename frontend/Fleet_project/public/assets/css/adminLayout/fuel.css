@@ -18,7 +18,6 @@
     width: 100%;
     display: flex;
     column-gap: 1%;
-    margin-bottom: 20px;
 }
 
 .fuel-details .first-row .vehicle {
@@ -135,11 +134,12 @@
 .fuel-search input{
     color: black;
     background-color: white;
+    border-radius: 5px;
 }
 .fuel-list{
     width: 100%;
     height: auto;
-    overflow-y: scroll;
+    overflow: auto;
 }
 .fuel-list .fuel-table{
     width: 100%;
@@ -182,6 +182,8 @@
             padding: 12px 24px;
             font-size: 14px;
         }
+        /* Fuel Management */
+
 }
 @media screen and (max-width: 576px){
     /* ADD FUEL */
@@ -208,5 +210,17 @@
     .fuel-details .add-button button{
         padding: 6px 12px;
         font-size: 14px;
+    }
+            /* Fuel Management */
+    .FuelManagement .fuel-search {
+        column-gap: 3%;
+    }
+    .FuelManagement .fuel-search input{
+        width: 60%;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+    :is(.fuel-list .fuel-table tr) :is(th, td){
+        padding: 8px 16px;
     }
 }
