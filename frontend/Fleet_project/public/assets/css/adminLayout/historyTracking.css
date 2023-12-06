@@ -94,7 +94,7 @@ button{
     border: 1px solid black;
     width: 100%;
     padding: 2px 2%;
-    background-color: rgb(135, 140, 145);
+    background-color: var(--grey);
   }
   @media screen and (max-width: 768px) {
     
@@ -102,5 +102,51 @@ button{
   @media screen and (max-width: 576px) {
     .HistoryTracking{
       padding: 10px;
+      height: 150vh;
+    }
+    .instruction-container{
+      display: flex;
+      justify-content: center;
+    }
+    .directions-control.directions-control-directions{
+      width: 100vw;
+      position: relative;
+    }
+    .detail-slide{
+      position: fixed;
+      bottom: -1px;
+      left: -0px;
+      width: 100vw;
+      height: 10vh;
+      background-color: var(--light);
+      box-shadow: -3px -22px 20px -28px rgba(0,0,0,0.45);
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      transition: height ease-in-out 0.8s;
+      z-index: 100;
+    }
+    .detail-slide.open{
+      height: 60vh;
+      overflow: auto;
+      z-index: 100;
+      transition: height ease-in-out 0.8s;
+      position: fixed;
+      bottom: -1px;
+      left: -0px;
+      width: 100vw;
+      background-color: var(--light);
+      box-shadow: -3px -22px 20px -28px rgba(0,0,0,0.45);
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      transition: height ease-in-out 0.8s;
+    }
+    .arrow-up{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    #arrow-up{
+      margin-top: 20px;
+      cursor: pointer;
     }
   }
