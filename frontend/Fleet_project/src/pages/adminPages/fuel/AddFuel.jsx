@@ -1,8 +1,20 @@
 import '/public/assets/css/adminLayout/fuel.css'
 
-const AddFuel = ()=>{
-    return(
+const AddFuel = () => {
+    return (
         <div className="AddFuel">
+            <div class="adminHeader">
+                <div class="left">
+                    <h1>Add Fuel</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">
+                            Fuel
+                        </a></li>
+                        /
+                        <li><a href="#" class="active">Add Fuel</a></li>
+                    </ul>
+                </div>
+            </div>
             <div className="fuel-details">
                 <div className="first-row">
                     <div className="vehicle">
@@ -12,7 +24,7 @@ const AddFuel = ()=>{
                         </select>
                     </div>
                     <div className="driver">
-                    <h4>Driver</h4>
+                        <h4>Driver</h4>
                         <select name="" id="">
                             <option value="">Select Driver</option>
                         </select>
@@ -23,7 +35,7 @@ const AddFuel = ()=>{
                     </div>
                     <div className="quantity">
                         <h4>Quantity</h4>
-                        <input type="number" name="" id="" placeholder='Enter Volume'/>
+                        <input type="number" name="" id="" placeholder='Enter Volume' />
                     </div>
                 </div>
                 <div className="second-row">
@@ -32,12 +44,12 @@ const AddFuel = ()=>{
                         <input type="number" placeholder='Enter Usage' />
                     </div>
                     <div className="amount">
-                    <h4>Amount</h4>
+                        <h4>Amount</h4>
                         <input type="number" placeholder='Enter Price' />
                     </div>
                     <div className="comment">
-                    <h4>Remarks</h4>
-                        <input type="text" placeholder='Enter Comment'/>
+                        <h4>Remarks</h4>
+                        <input type="text" placeholder='Enter Comment' />
                     </div>
                 </div>
                 <div className="add-button">

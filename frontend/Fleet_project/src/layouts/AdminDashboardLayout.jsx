@@ -7,16 +7,8 @@ const AdminDashboardLayout = ()=>{
   axios.defaults.withCredentials = true;
   const hostServer = import.meta.env.VITE_SERVER_HOST
   const nav = useNavigate(null)
-  const [driverDropdown, setDriverDropdown] = useState(false)
-  const [vehicleDropdown, setVehicleDropdown] = useState(false)
-  const [bookingDropdown, setBookingDropdown] = useState(false)
-  const [customerDropdown, setCustomerDropdown] = useState(false)
-  const [reminderDropdown, setReminderDropdown] = useState(false)
   const [trackingDropdown, setTrackingDropdown] = useState(false)
-  const [reportsDropdown, setReportsDropdown] = useState(false)
   const [maintenanceDropdown, setMaintenanceDropdown] = useState(false)
-  const [userDropdown, setUserDropdown] = useState(false)
-  const [incomeExpenseDropdown, setIncomeExpenseDropdown] = useState(false)
   const [fuel, setFuel] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isAuth, setIsAuth] = useState(false)
@@ -25,23 +17,7 @@ const AdminDashboardLayout = ()=>{
   const [mapStyle, setMapStyle] = useState('streets-v12')
   const toggleDropdown = (e) => {
       switch(e.id) {
-        case'drivers': setDriverDropdown(!driverDropdown) 
-        break;
-        case'vehicles': setVehicleDropdown(!vehicleDropdown) 
-        break;
-        case'bookings': setBookingDropdown(!bookingDropdown) 
-        break;
-        case'customers': setCustomerDropdown(!customerDropdown) 
-        break;
-        case'reminders': setReminderDropdown(!reminderDropdown) 
-        break;
         case'tracking': setTrackingDropdown(!trackingDropdown) 
-        break;
-        case'reports': setReportsDropdown(!reportsDropdown) 
-        break;
-        case'users': setUserDropdown(!userDropdown) 
-        break;
-        case'ie': setIncomeExpenseDropdown(!incomeExpenseDropdown) 
         break;
         case'maintenance': setMaintenanceDropdown(!maintenanceDropdown) 
         break;
@@ -251,81 +227,8 @@ const AdminDashboardLayout = ()=>{
           Dashboard
         </Link>
       </li>
-      <li>
-        <Link to="/admin/availability">
-        <i className='bx bx-calendar'></i>
-          Availability
-        </Link>
-      </li>
       
-      <li id='bookings' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="#">
-        <i className='bx bx-book-reader'></i>
-          Bookings
-        </Link>
-      </li>
-      {bookingDropdown && (
-        <>
-      <li>
-        <Link to="/admin/bookings/list" id='subMenu'> 
-        Booking List
-        </Link> 
-      </li>
-      <li >
-      <Link to="/admin/bookings/add" id='subMenu'>
-      Add Booking
-      </Link> 
-    </li>
-    </>
-    )
-      } 
-      <li id='drivers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="#">
-        <i className='bx bx-id-card'></i>
-          Drivers
-        </Link>
-      </li>
-      {driverDropdown && (
-        <>
-      <li>
-        <Link to="/admin/driver/list" id='subMenu'>
-        Driver List
-        </Link> 
-      </li>
-      <li>
-      <Link to="/admin/driver/add" id='subMenu'>
-      Add Driver
-      </Link> 
-    </li>
-    </>
-    )
-      } 
       
-      <li id='vehicles' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="#">
-        <i className='bx bx-bus-school'></i>
-          Vehicles
-        </Link>
-      </li>
-      {
-        vehicleDropdown && (<>
-          <li>
-        <Link to="/admin/vehicle/list"  id='subMenu'>
-        Vehicle List
-        </Link> 
-      </li>
-      <li>
-        <Link to="/admin/vehicle/add"  id='subMenu'>
-        Add Vehicle
-        </Link> 
-      </li>
-      <li> 
-        <Link to="/admin/vehicle/group"  id='subMenu'>
-        Vehicle Group
-        </Link> 
-      </li>
-        </>)
-      }
       <li id='maintenance' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
         <i className='bx bx-wrench'></i>
@@ -369,28 +272,6 @@ const AdminDashboardLayout = ()=>{
         </>
         )
       }
-      <li id='ie' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="#">
-          <i className="bx bx-cog" />
-          Income & Expense
-        </Link>
-      </li>
-      {incomeExpenseDropdown && (
-        <>
-      <li >
-        <Link to="/admin/incomeexpense/management" id='subMenu'>
-         IE Management
-        </Link> 
-      </li>
-      <li >
-      <Link to="/admin/incomeexpense/add" id='subMenu'>
-      Add IE
-      </Link> 
-    </li>
-    </>
-    )
-
-      }
       <li id='tracking' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="#">
         <i className='bx bx-navigation'></i>
@@ -412,96 +293,12 @@ const AdminDashboardLayout = ()=>{
     </>
     )
       } 
-      <li id='reminders' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="#">
-        <i className='bx bx-bell'></i>
-          Reminders
-        </Link>
-      </li>
-      {reminderDropdown && (
-        <>
-      <li>
-        <Link to="/admin/reminder/management"  id='subMenu'>
-        Reminders Panel
-        </Link> 
-      </li>
-      <li>
-      <Link to="/admin/reminder/add" id='subMenu'>
-      Add Reminders
-      </Link> 
-    </li>
-    </>
-    )
-      } 
       <li onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
         <Link to="/admin/settings">
           <i className="bx bx-cog" />
           Settings
         </Link>
       </li>
-      <li id='reports' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="#">
-        <i className='bx bx-message-dots'></i>
-          Reports
-        </Link>
-      </li>
-      {reportsDropdown && (
-        <>
-      <li>
-        <Link to="/admin/report/list" id='subMenu'>
-        Reports List
-        </Link> 
-      </li>
-      <li>
-      <Link to="/admin/report/add" id='subMenu'>
-      Add Reports
-      </Link> 
-    </li>
-    </>
-    )
-      } 
-      <li id='users' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="#">
-        <i className='bx bx-user'></i>
-          Users
-        </Link>
-      </li>
-      {userDropdown && (
-        <>
-      <li>
-        <Link to="/admin/users/management" id='subMenu'>
-        User Panel
-        </Link> 
-      </li>
-      <li>
-      <Link to="/admin/users/add" id='subMenu'>
-      Add User
-      </Link> 
-    </li>
-    </>
-    )
-      } 
-      <li id='customers' onClick={(e)=>{toggleDropdown(e.currentTarget)}}>
-        <Link to="#">
-        <i className='bx bx-user-check' ></i>
-          Customers
-        </Link>
-      </li>
-      {customerDropdown && (
-        <>
-      <li>
-        <Link to="/admin/customers/management" id='subMenu'>
-        Customer Panel
-        </Link> 
-      </li>
-      <li>
-      <Link to="/admin/customers/add" id='subMenu'>
-      Add Customer
-      </Link> 
-    </li>
-    </>
-    )
-      } 
     </ul>
     <ul className="side-menu">
       <li onClick={handleLogout} style={{cursor:"pointer"}}>
@@ -528,13 +325,9 @@ const AdminDashboardLayout = ()=>{
       </form>
       <input type="checkbox" id="theme-toggle" hidden="" onClick={setMapTheme}/>
       <label htmlFor="theme-toggle" className="theme-toggle" onClick={setMapTheme} />
-      <a href="#" className="notif">
-        <i className="bx bx-bell" />
-        <span className="count"></span>
-      </a>
-      <a href="#" className="profile">
+      {/* <a href="#" className="profile">
         <img src="/assets/img/prof-pic.jpg" />
-      </a>
+      </a> */}
     </nav>
     {/* End of Navbar */}
     <main>

@@ -1,17 +1,16 @@
 /* Add FUEL */
 .fuel-details h4{
     font-size: 18px;
+    font-weight: 600;
 }
 .fuel-details {
     height: 70vh;
-    padding: 30px;
-    box-shadow: 1px 2px #1976d28f;
-    border-radius: 10px;
+    padding: 24px;
+    border-radius: 20px;
     background-color: var(--light);
 }
 .fuel-details select, .fuel-details input {
-    color: black !important;
-    background-color: white !important;
+    background-color: var(--grey) !important;
 }
 
 .fuel-details .first-row {
@@ -113,15 +112,17 @@
 }
 .fuel-details .add-button button{
     padding: 6px 12px;
+    font-weight: 500;
     background-color: #1976D2;
     color: white;
     border-radius: 5px;
     cursor: pointer;
 }
 /* Fuel Management */
-.FuelManagement{
+.fuel-content{
     height: 70vh;
-    padding: 30px;
+    padding: 24px;
+    border-radius: 20px;
     background-color: var(--light);
 }
 .fuel-search{
@@ -132,9 +133,8 @@
     margin-bottom: 10px;
 }
 .fuel-search input{
-    color: black;
-    background-color: white;
     border-radius: 5px;
+    background-color: var(--grey) ;
 }
 .fuel-list{
     width: 100%;
@@ -212,10 +212,10 @@
         font-size: 14px;
     }
             /* Fuel Management */
-    .FuelManagement .fuel-search {
+    .fuel-content .fuel-search {
         column-gap: 3%;
     }
-    .FuelManagement .fuel-search input{
+    .fuel-content .fuel-search input{
         width: 60%;
         font-size: 16px;
         border-radius: 5px;

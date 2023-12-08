@@ -34,6 +34,18 @@ const AddMaintenance = ()=>{
         };
     return(
         <div className="AddMaintenance">
+                        <div class="adminHeader">
+                <div class="left">
+                    <h1>Maintenance</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">
+                            Analytics
+                        </a></li>
+                        /
+                        <li><a href="#" class="active">Shop</a></li>
+                    </ul>
+                </div>
+            </div>
             <div className="vehicle-maintenance">
                 <div className="vehicle-details">
                     <div className="select-vehicle">

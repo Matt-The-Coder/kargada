@@ -368,42 +368,43 @@ body{
     max-height: calc(100vh - 56px);
 }
 
-.content main .header{
+.content main .adminHeader{
     display: flex;
     align-items: center;
     justify-content: space-between;
     grid-gap: 16px;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
-.content main .header .left h1{
+.content main .adminHeader .left h1{
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 10px;
     color: var(--dark);
 }
 
-.content main .header .left .breadcrumb{
+.content main .adminHeader .left .breadcrumb{
     display: flex;
     align-items: center;
     grid-gap: 16px;
 }
 
-.content main .header .left .breadcrumb li{
+.content main .adminHeader .left .breadcrumb li{
     color: var(--dark);
 }
 
-.content main .header .left .breadcrumb li a{
+.content main .adminHeader .left .breadcrumb li a{
     color: var(--dark-grey);
     pointer-events: none;
 }
 
-.content main .header .left .breadcrumb li a.active{
+.content main .adminHeader .left .breadcrumb li a.active{
     color: var(--primary);
     pointer-events: none;
 }
 
-.content main .header .report{
+.content main .adminHeader .report{
     height: 36px;
     padding: 0 16px;
     border-radius: 36px;
@@ -489,20 +490,20 @@ body{
     overflow-x: auto;
 }
 
-.content main .bottom-data .header{
+.content main .bottom-data .adminHeader{
     display: flex;
     align-items: center;
     grid-gap: 16px;
     margin-bottom: 24px;
 }
 
-.content main .bottom-data .header h3{
+.content main .bottom-data .adminHeader h3{
     margin-right: auto;
     font-size: 24px;
     font-weight: 600;
 }
 
-.content main .bottom-data .header .bx{
+.content main .bottom-data .adminHeader .bx{
     cursor: pointer;
 }
 
@@ -684,4 +685,5 @@ body{
     }
 
 }
+
 

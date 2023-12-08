@@ -1,12 +1,12 @@
-:is(.HistoryTracking) :is(button) {
+:is(.tracking-details) :is(button) {
   background-color: #ffffff;
   color: rgb(26, 21, 21);
   border-radius: 5px;
   cursor: pointer;
 }
-.HistoryTracking{
+.tracking-details{
   width: 100%;
-  padding: 30px;
+  padding: 24px;
   background-color: var(--light);
   border-radius: 20px;
 }
@@ -83,9 +83,9 @@ button{
   }
   .weatherDataMobile summary{
     width: 100%;
-
     padding: 6px;
     margin-bottom: 7px;
+    font-weight: 400;
   }
   .weatherDataMobile p{
     border-radius: 2px;
@@ -95,12 +95,13 @@ button{
     width: 100%;
     padding: 2px 2%;
     background-color: var(--grey);
+    font-weight: 200;
   }
   @media screen and (max-width: 768px) {
     
   }
   @media screen and (max-width: 576px) {
-    .HistoryTracking{
+    .tracking-details{
       padding: 10px;
       height: 150vh;
     }
