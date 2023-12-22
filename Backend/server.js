@@ -33,10 +33,13 @@ var corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200 
   }
-
-const routes = require('./routes/adminRoute')
+const maintenanceRouter = require('./routes/maintenanceRoute')
+const fuelRoute = require('./routes/fuelRoute')
+const authRoute = require('./routes/authRoute');
 app.use(cors(corsOptions))
-app.use(routes)
+app.use(authRoute)
+app.use(fuelRoute)
+app.use(maintenanceRouter)
 app.get('/getDirections', async (req, res)=>{
   const data = await axios.get(`https://api.mapbox.com/directions/v5/mapbox/driving/121.0021727%2C14.6676937%3B120.9839835%2C14.594973249999999?alternatives=true&annotations=speed&geometries=geojson&language=en&overview=full&steps=true&access_token=pk.eyJ1Ijoibm9haGtseWRlMTciLCJhIjoiY2xvaHluYnE2MDdnODJpbzV2MDB3aG5pMiJ9.doCuGnlTGiK8h44qAgBo6A`)
   res.json(data.data)

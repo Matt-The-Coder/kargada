@@ -1,10 +1,11 @@
 const express = require('express')
-const route = express.Router()
+const authRoute = express.Router()
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const db = require('../database/connection')
 const axios = require('axios')
-
+const authServices = require('../services/auth/auth')
+const {getAccounts, getAccByUsername } = authServices()
 const verifyToken = (req, res, next) => 
 {
   const token = req.session.token
@@ -17,7 +18,7 @@ const verifyToken = (req, res, next) =>
     }
 
 }
-route.get('/alreadyauthenticated', (req, res) => 
+authRoute.get('/alreadyauthenticated', (req, res) => 
 {
 
   if(req.session.token){
@@ -27,7 +28,7 @@ route.get('/alreadyauthenticated', (req, res) =>
     res.json({auth:false})
   }
 })
-route.get('/homeAuthentication', verifyToken, (req, res) => {
+authRoute.get('/homeAuthentication', verifyToken, (req, res) => {
     jwt.verify(req.sessionToken, "secretkey", (err, authData)=>{
         if(err){
           return res.json({message: "token is expired, not valid!"})
@@ -37,7 +38,7 @@ route.get('/homeAuthentication', verifyToken, (req, res) => {
     })
 })
 
-route.delete("/logout", (req, res) => 
+authRoute.delete("/logout", (req, res) => 
 {
   // res.clearCookie("token")
   req.session.destroy((err) => {
@@ -49,11 +50,11 @@ route.delete("/logout", (req, res) =>
   });
 })
 
-route.post('/login', async (req, res)=>
+authRoute.post('/login', async (req, res)=>
 {
   try { 
     const {userName, password} = req.body
-    const user = await db(`Select * from accounts where u_username = '${userName}'`)
+    const user = await getAccByUsername(userName)
     if(user == 0){
      return res.json({message: "User does not exist"})
     }
@@ -82,7 +83,7 @@ route.post('/login', async (req, res)=>
 
 
 
-route.get('/register', async (req, res)=>
+authRoute.get('/register', async (req, res)=>
 {
   try {
     const email = 'ralphmatthewmanabat@gmail.com'
@@ -100,7 +101,7 @@ route.get('/register', async (req, res)=>
 
 })
 // Calculate Emissions and Consumptions
-route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
+authRoute.post('/calculateFuelConsumptionWithPrice', (req, res)=>
 {
   const {miles, weightInKG} = req.query
   // Fuel Consumption
@@ -118,7 +119,7 @@ route.post('/calculateFuelConsumptionWithPrice', (req, res)=>
       carbonEmission: carbonEmissionsInGrams})
 })
 
-route.get('/weatherdata', async (req, res)=> 
+authRoute.get('/weatherdata', async (req, res)=> 
 {   
   let latitude = req.query.lat;
   let longitude = req.query.lon
@@ -128,4 +129,4 @@ route.get('/weatherdata', async (req, res)=>
     res.json({weatherData:weatherData.data.data[0], weatherAlert:weatherAlert.data})
 })
 
-module.exports = route
+module.exports = authRoute

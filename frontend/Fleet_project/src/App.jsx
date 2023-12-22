@@ -1,6 +1,6 @@
 import {Routes, Route} from 'react-router-dom'
 import AdminDashboardLayout from './layouts/AdminDashboardLayout'
-import {AdminDashboard, Login, LiveTracking, HistoryTracking, 
+import {AdminDashboard, Login, LiveTracking,TrackingTrips,
    MaintenanceList, AddMaintenance, Settings, LandingPage, AddFuel, FuelManagement} from './pages/adminPages/Components.js'
 import Notfound from './pages/Notfound'
 
@@ -16,8 +16,8 @@ const App = () =>{
         <Route path='/admin/maintenance/add' element={<AddMaintenance/>}/>
         <Route path='/admin/maintenance/list' element={<MaintenanceList/>}/>
         <Route path='/admin/settings' element={<Settings/>}/>
+        <Route path='/admin/tracking/trips' element={<TrackingTrips/>}/>
         <Route path='/admin/tracking/live' element={<LiveTracking/>}/>
-        <Route path='/admin/tracking/history' element={<HistoryTracking/>}/>
         <Route path='/admin/fuel/manage' element={<FuelManagement/>}/>
         <Route path='/admin/fuel/add' element={<AddFuel/>}/>
       </Route>

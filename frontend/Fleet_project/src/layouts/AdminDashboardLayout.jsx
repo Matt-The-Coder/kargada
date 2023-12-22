@@ -78,7 +78,6 @@ const AdminDashboardLayout = ()=>{
           const sideLinks = document.querySelectorAll('.sidebar .side-menu  li a:not(.logout)');
           sideLinks.forEach((item) => item.parentElement.classList.remove('active'));
           e.target.parentElement.classList.add('active');
-          console.log(sideLinks)
         };
 
 
@@ -280,15 +279,15 @@ const AdminDashboardLayout = ()=>{
       </li>
       {trackingDropdown && (
         <>
-      <li >
+      {/* <li >
         <a href="/admin/tracking/history" id='subMenu'>
         History Tracking
         </a> 
-      </li>
+      </li> */}
       <li >
-      <Link to="/admin/tracking/live" id='subMenu'>
+      <a href="/admin/tracking/live" id='subMenu'>
       Live Tracking
-      </Link> 
+      </a> 
     </li>
     </>
     )

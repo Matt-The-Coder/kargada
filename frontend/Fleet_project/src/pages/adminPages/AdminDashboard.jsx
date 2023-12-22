@@ -5,15 +5,15 @@ const AdminDashboard = () => {
     const { u_name } = useOutletContext()
     return (
             <div className="adminDashboard">
-            <div class="adminHeader">
-                <div class="left">
+            <div className="adminHeader">
+                <div className="left">
                     <h1>Dashboard</h1>
-                    <ul class="breadcrumb">
+                    <ul className="breadcrumb">
                         <li><a href="#">
                             Analytics
                         </a></li>
                         /
-                        <li><a href="#" class="active">Shop</a></li>
+                        <li><a href="#" className="active">Shop</a></li>
                     </ul>
                 </div>
             </div>

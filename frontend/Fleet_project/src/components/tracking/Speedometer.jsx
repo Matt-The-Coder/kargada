@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import odometer from "/assets/img/vectors/odometer.svg";
 import needle from "/assets/img/vectors/needle.svg";
-import '/public/assets/css/adminLayout/historyTracking.css'
+import '/public/assets/css/adminLayout/liveTracking.css'
 
 const Speedometer = ({ speed }) => {
   const pointerRef = useRef(null);
