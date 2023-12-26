@@ -75,7 +75,7 @@ const AdminDashboardLayout = ()=>{
     useEffect(() => {
         // Function to handle side menu item clicks
         const handleSideMenuItemClick = (e) => {
-          const sideLinks = document.querySelectorAll('.sidebar .side-menu  li a:not(.logout)');
+          const sideLinks = document.querySelectorAll('.adminSidebar .side-menu  li a:not(.logout)');
           sideLinks.forEach((item) => item.parentElement.classList.remove('active'));
           e.target.parentElement.classList.add('active');
         };
@@ -84,25 +84,25 @@ const AdminDashboardLayout = ()=>{
     
         // Function to handle menu bar click
         const handleMenuBarClick = () => {
-          const sideBar = document.querySelector('.sidebar');
+          const adminSidebar = document.querySelector('.adminSidebar');
           const sideMenu = document.querySelectorAll('#subMenu');
           
-          // Toggle the 'close' class on the sidebar
-          sideBar.classList.toggle('close');
+          // Toggle the 'close' class on the adminSidebar
+          adminSidebar.classList.toggle('close');
         
-          // Check if the sidebar is closed
-          if (sideBar.classList.contains('close')) {
+          // Check if the adminSidebar is closed
+          if (adminSidebar.classList.contains('close')) {
             sideMenu.forEach((menu) => {
               // Apply styles for smooth hiding
               menu.style.opacity = '0.5';
             });
-            sideBar.style.display = "none"
+            adminSidebar.style.display = "none"
           } else {
             sideMenu.forEach((menu) => {
               // Apply styles for smooth showing
               menu.style.opacity = '1';
             });
-            sideBar.style.display = "block"
+            adminSidebar.style.display = "block"
           }
         };
         
@@ -124,11 +124,11 @@ const AdminDashboardLayout = ()=>{
 
         // // Function to handle window resize
         // const handleWindowResize = () => {
-        //   const sideBar = document.querySelector('.sidebar');
+        //   const adminSidebar = document.querySelector('.adminSidebar');
         //   if (window.innerWidth < 768) {
-        //     sideBar.classList.add('close');
+        //     adminSidebar.classList.add('close');
         //   } else {
-        //     sideBar.classList.remove('close');
+        //     adminSidebar.classList.remove('close');
         //   }
     
         //   const searchForm = document.querySelector('.content nav form');
@@ -150,7 +150,7 @@ const AdminDashboardLayout = ()=>{
         };
     
         // Attach event listeners
-        const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+        const sideLinks = document.querySelectorAll('.adminSidebar .side-menu li a:not(.logout)');
         sideLinks.forEach((item) => {
           item.addEventListener('click', handleSideMenuItemClick);
         });
@@ -212,7 +212,7 @@ const AdminDashboardLayout = ()=>{
 
        </>)}
        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div className="sidebar close">
+        <div className="adminSidebar close">
     <a href="/admin/dashboard" className="logo">
       <img src="/assets/img/kargada-logo.png" alt="Company Logo"/>
       <div className="logo-name">
@@ -324,9 +324,9 @@ const AdminDashboardLayout = ()=>{
       </form>
       <input type="checkbox" id="theme-toggle" hidden="" onClick={setMapTheme}/>
       <label htmlFor="theme-toggle" className="theme-toggle" onClick={setMapTheme} />
-      {/* <a href="#" className="profile">
+      <a href="#" className="profile">
         <img src="/assets/img/prof-pic.jpg" />
-      </a> */}
+      </a>
     </nav>
     {/* End of Navbar */}
     <main>

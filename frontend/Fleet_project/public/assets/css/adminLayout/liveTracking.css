@@ -4,12 +4,19 @@
   border-radius: 5px;
   cursor: pointer;
 }
+h3{
+  font-weight: 600;
+  font-size: 24px;
+}
+h4{
+  font-weight: 100px;
+}
 .tracking-details{
   width: 100%;
   padding: 24px;
 }
 .map-container {
-    height: 60vh;
+    height: 70vh;
     width: 100%;
     border: var(--light) 2px solid;
     border-radius: 20px;
@@ -39,32 +46,127 @@ button{
     background-size: cover;
     transition: all 0.5s ease-in;
 }
-.Speedometer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .meter {
-    position: relative;
-    width: 300px; /* Adjust as needed */
-    height: 300px; /* Adjust as needed */
-  }
-  
-  .meter-image {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .needle {
-    position: absolute;
-    top: 80%;
-    left: 48%;
-    transform-origin: bottom center;
-    transform: translate(-50%, -100%) rotate(10deg);
-    transition: transform 0.3s ease-in-out;
-  }
+/* Desktop */
+.weatherData{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: space-around;
+  gap: 20px;
+}
 
+
+.weatherData :is(.weatherIcon, .rainfallRate, .air, .temperature, 
+.humidity, .visibility, .solar, .pressure, .weatherAlert) {
+  display: flex;
+  flex:1;
+  background-color: var(--light);
+  padding: 108px;
+  border-radius: 20px;
+}
+:is(.weatherIcon, .rainfallRate, .air, .temperature, 
+.humidity, .visibility, .solar, .pressure, .weatherAlert) :is(*:first-child){
+  background-color: var(--light-primary);
+  width: 35%;
+  font-size: 34px;
+  color: var(--primary);
+  height: 80px;
+  width: 80px;
+}
+
+  .transportDetails {
+    background-color: var(--light);
+    position: fixed;
+    height: 100px;
+    width: 100px;
+    bottom: -70px;
+    right: 100px;
+  }
+  .transportDetails :is(p, h3){
+    color: var(--dark-grey);
+  }
+  #showDetail, #showInfo{
+    color: var(--primary);
+    font-size: 40px;
+  }
+  .moreInfo {
+    position: fixed;
+    left: 0;
+    bottom: 50%;
+    display: flex;
+  }
+  .boxInfo{
+    visibility: hidden;
+    height: 430px;
+    width: 320px;
+    position: fixed;
+    left: 50px;
+    top: 190px;
+    background-color: var(--light);
+    box-shadow: 0px 0px 2px black;
+  }
+  .boxInfoNav{
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid;
+  }
+  .boxInfoNav h4 {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .boxInfoDetail{
+    height: 90%;
+    width: 100%;
+    padding: 20px;
+    overflow-x:hidden;
+  }
+  .directions-control.directions-control-instructions, .mapboxgl-ctrl-directions.mapboxgl-ctrl{
+    width: 100%;
+  }
+  .tracking-details.open{
+
+  }
+  .transportCard {
+    height: 200px;
+    width: 700px;
+    background-color: var(--light-primary);
+    position: fixed;
+    right: 30px;
+    bottom: 40px;
+    display: flex;
+    gap: .2%;
+    box-shadow: 0px 0px  2px black ;
+  }
+  .transportCard .card{
+    width: 49.9%;
+    padding: 20px;
+    background-color:var(--light);
+  }
+  .transportCard .cardTitle{
+    display: flex;
+    gap: 2%;
+  }
+  #truckBx, #carBx{
+    font-size: 22px;
+  }
+  #speedometer{
+    display: flex;
+    gap: 8%;
+  }
+  .transportData{
+    display: flex;
+    gap: 50px;
+  }
+  .vehicleData{
+    width: 48%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .speedometer{
+    margin-top: 15px;
+  }
   /* Mobile */
 
   .weatherDataMobile{
@@ -94,14 +196,7 @@ button{
     font-weight: 300;
     font-size: 15px;
   }
-  .weatherData{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    justify-content: space-around;
-    gap: 20px;
 
-
-  }
   .weatherData>div{
     overflow: auto;
     background-color: var(--light);
@@ -115,7 +210,7 @@ button{
   }
 
   .mapboxgl-ctrl-directions.mapboxgl-ctrl *{ 
-    background-color: var(--grey) !important;
+    background-color: var(--light) !important;
     color: var(--dark) !important;
   }
   /* instructions */
@@ -137,7 +232,8 @@ button{
     /* Arrow instruction */
     .directions-icon.directions-icon-right, .directions-icon.directions-icon-depart,
      .directions-icon.directions-icon-left, .directions-icon.directions-icon-slight-right,
-     .directions-icon.directions-icon-slight-left, .directions-icon.directions-icon-arrive{
+     .directions-icon.directions-icon-slight-left, .directions-icon.directions-icon-sharp-left,
+     .directions-icon.directions-icon-sharp-right, .directions-icon.directions-icon-arrive{
       background-color:#363949 !important;
     }
     /* steps */
@@ -161,7 +257,7 @@ button{
     .mapboxgl-ctrl-directions.mapboxgl-ctrl{
       width: 100vw;
       position: relative;
-      min-width: 100%;
+      min-width: 90% !important;
     }
     .detail-slide{
       position: fixed;
@@ -169,7 +265,7 @@ button{
       left: -0px;
       width: 100vw;
       height: 10vh;
-      background-color: var(--grey);
+      background-color: var(--light);
       box-shadow: -3px -22px 20px -28px rgba(0,0,0,0.45);
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
@@ -189,13 +285,13 @@ button{
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
       transition: height ease-in-out 0.8s;
-      background-color: var(--grey);
+      background-color: var(--light);
     }
     .arrow-up{
       display: flex;
       justify-content: center;
       width: 100%;
-      background-color: var(--grey);
+      background-color: var(--light);
     }
     #arrow-up{
       margin-top: 20px;

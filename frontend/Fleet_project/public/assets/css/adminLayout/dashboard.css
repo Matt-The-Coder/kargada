@@ -50,7 +50,7 @@ body{
     overflow-x: hidden;
 }
 
-.sidebar{
+.adminSidebar{
     position: fixed;
     top: 0;
     left: 0;
@@ -64,15 +64,15 @@ body{
     display: none;
 }
 
-.sidebar::-webkit-scrollbar{
+.adminSidebar::-webkit-scrollbar{
     display: none;
 }
 
-.sidebar.close{
+.adminSidebar.close{
     width: 60px;
 }
 
-.sidebar .logo{
+.adminSidebar .logo{
     font-size: 24px;
     font-weight: 700;
     height: 56px;
@@ -84,7 +84,7 @@ body{
     padding-bottom: 20px;
     box-sizing: content-box;
 }
-.sidebar .logo img{
+.adminSidebar .logo img{
     height: 100px;
     width: 100px;
     position: relative;
@@ -92,27 +92,27 @@ body{
     left: -30%;
  
 }
-.sidebar .logo .logo-name {
+.adminSidebar .logo .logo-name {
     position: relative;
     left: -50%;
 }
-.sidebar .logo .logo-name span{
+.adminSidebar .logo .logo-name span{
     color: var(--primary);
 }
 
-.sidebar .logo .bx{
+.adminSidebar .logo .bx{
     min-width: 60px;
     display: flex;
     justify-content: center;
     font-size: 2.2rem;
 }
 
-.sidebar .side-menu{
+.adminSidebar .side-menu{
     width: 100%;
     margin-top: 48px;
 }
 
-.sidebar .side-menu li{
+.adminSidebar .side-menu li{
     height: 48px;
     background: transparent;
     margin-left: 6px;
@@ -120,12 +120,12 @@ body{
     padding: 4px;
 }
 
-.sidebar .side-menu li.active{
+.adminSidebar .side-menu li.active{
     background: var(--grey);
     position: relative;
 }
 
-.sidebar .side-menu li.active::before{
+.adminSidebar .side-menu li.active::before{
     content: "";
     position: absolute;
     width: 40px;
@@ -137,7 +137,7 @@ body{
     z-index: -1;
 }
 
-.sidebar .side-menu li.active::after{
+.adminSidebar .side-menu li.active::after{
     content: "";
     position: absolute;
     width: 40px;
@@ -149,7 +149,7 @@ body{
     z-index: -1;
 }
 
-.sidebar .side-menu li a{
+.adminSidebar .side-menu li a{
     width: 100%;
     height: 100%;
     background: var(--light);
@@ -192,7 +192,7 @@ body{
     transition: opacity 0.3s ease, height 0.3s ease;
   }
   
-  .sidebar.close #subMenu {
+  .adminSidebar.close #subMenu {
     opacity: 0;
     height: 0;
     overflow: hidden;
@@ -203,23 +203,23 @@ body{
     color: var(--success);
 }
 
-.sidebar .side-menu li.active a{
+.adminSidebar .side-menu li.active a{
     color: var(--success);
 }
 
-.sidebar.close .side-menu li a{
+.adminSidebar.close .side-menu li a{
     width: calc(48px - (4px * 2));
     transition: all 0.3s ease;
 }
 
-.sidebar .side-menu li a .bx{
+.adminSidebar .side-menu li a .bx{
     min-width: calc(60px - ((4px + 6px) * 2));
     display: flex;
     font-size: 1.6rem;
     justify-content: center;
 }
 
-.sidebar .side-menu li a.logout{
+.adminSidebar .side-menu li a.logout{
     color: var(--danger);
 }
 
@@ -230,7 +230,7 @@ body{
     transition: all 0.3s ease;
 }
 
-.sidebar.close~.content{
+.adminSidebar.close~.content{
     width: calc(100% - 0px);
     left: 0px;
 }
@@ -617,7 +617,7 @@ body{
 }
 
 @media screen and (max-width: 768px) {
-    .sidebar{
+    .adminSidebar{
         width: 200px;
     }
 
@@ -625,7 +625,7 @@ body{
         width: calc(100% - 60px);
         left: 200px;
     }
-    .sidebar .logo .logo-name{
+    .adminSidebar .logo .logo-name{
         position: relative;
         left: -60%;
     }
@@ -679,7 +679,7 @@ body{
         min-width: 340px;
     }
 
-    .sidebar .logo .logo-name{
+    .adminSidebar .logo .logo-name{
         position: relative;
         left: -60%;
     }
